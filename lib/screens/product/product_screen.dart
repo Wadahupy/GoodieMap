@@ -60,7 +60,7 @@ class productScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Text(
                     product.name,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -71,12 +71,15 @@ class productScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      '\₱ ${product.price}',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFFF276342),
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        '\₱ ${product.price}',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Color(0xFFF276342),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -104,13 +107,6 @@ class productScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(
-                                'Quantity',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                               SizedBox(
                                 width: 5,
                               ),

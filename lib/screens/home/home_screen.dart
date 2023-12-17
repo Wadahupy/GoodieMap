@@ -116,6 +116,7 @@ class _homePageState extends State<homePage> {
         shape: const CircularNotchedRectangle(),
         color: const Color(0xFF46B177),
         child: Container(
+          decoration: BoxDecoration(),
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

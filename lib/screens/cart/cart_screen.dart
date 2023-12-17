@@ -70,37 +70,39 @@ class CartScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 20.0),
-                  child: Container(
-                    height: 70,
-                    width: 500,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF46B177),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Total Price:',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            '\₱ ' + state.cart.totalString,
-                            style: TextStyle(
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 20.0),
+                    child: Container(
+                      height: 70,
+                      width: 500,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF46B177),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total Price:',
+                              style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
+                                fontSize: 17,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              '\₱ ' + state.cart.totalString,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

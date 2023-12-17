@@ -46,11 +46,10 @@ class ProductGrid extends StatelessWidget {
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
         ),
-        itemCount:
-            products.length, // Use the length of the provided products list
+        itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
           return ProductCard(
-            product: products[index], // Use the provided products list
+            product: products[index],
             widthFactor: 2,
           );
         },
