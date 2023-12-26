@@ -26,7 +26,7 @@ class CategoryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: Stack(
                 alignment: Alignment
                     .bottomLeft, // Aligns the text to the bottom left corner
@@ -38,15 +38,15 @@ class CategoryCard extends StatelessWidget {
                     width: 500,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         vertical: 8, horizontal: 10), // Adjusted padding
-                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                    color: const Color.fromRGBO(0, 0, 0, 0.5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           category.section,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -54,7 +54,7 @@ class CategoryCard extends StatelessWidget {
                         ),
                         Text(
                           category.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,

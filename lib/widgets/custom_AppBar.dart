@@ -1,8 +1,11 @@
+// ignore_for_file: file_names, library_private_types_in_public_api, unused_element
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:goodiemap_app/widgets/custom_search.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -17,44 +20,6 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  final TextEditingController _searchController = TextEditingController();
-  bool isSearchClicked = false;
-  String searchText = '';
-  List<String> items = [
-    'Items 1',
-    'Messi',
-    'Ronaldo',
-    'Virat Kohli',
-    '2',
-    'Rock',
-    'Elon Musk',
-  ];
-
-  List<String> filteredItems = [];
-  @override
-  void initState() {
-    super.initState();
-    filteredItems = List.from(items);
-  }
-
-  void _onSearchChanged(String value) {
-    setState(() {
-      searchText = value;
-      myFilterItems();
-    });
-  }
-
-  void myFilterItems() {
-    if (searchText.isEmpty) {
-      filteredItems = List.from(items);
-    } else {
-      filteredItems = items
-          .where(
-              (item) => item.toLowerCase().contains(searchText.toLowerCase()))
-          .toList();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -62,38 +27,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       toolbarHeight: 70,
-      title: isSearchClicked
-          ? Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: TextField(
-                controller: _searchController,
-                onChanged: (context) {},
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(16, 20, 16, 12),
-                    hintStyle: TextStyle(color: Colors.black),
-                    border: InputBorder.none,
-                    hintText: 'Search..'),
-              ),
-            )
-          : const Text("GoodieMap"),
+      title: const Text("GoodieMap"),
       actions: [
         Row(
           children: [
             IconButton(
               onPressed: () {
-                setState(() {
-                  isSearchClicked = !isSearchClicked;
-                  if (!isSearchClicked) {
-                    _searchController.clear();
-                    myFilterItems();
-                  }
-                });
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(),
+                );
               },
-              icon: Icon(isSearchClicked ? Icons.close : Icons.search),
+              icon: const Icon(Icons.search),
             ),
             badges.Badge(
               position: BadgePosition.topEnd(top: 0, end: 3),
@@ -101,13 +46,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ' ${_getTotalQuantity(context)}',
                 style: const TextStyle(color: Colors.white),
               ),
+              badgeAnimation: const BadgeAnimation.scale(),
               child: IconButton(
                 icon: const Icon(Icons.shopping_cart),
                 onPressed: () {
                   Navigator.pushNamed(context, '/cart');
                 },
               ),
-              badgeAnimation: BadgeAnimation.scale(),
             ),
           ],
         )

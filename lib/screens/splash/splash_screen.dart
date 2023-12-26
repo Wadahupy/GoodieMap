@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/screens/onboarding/onboarding_screen.dart';
@@ -28,20 +30,20 @@ class SplashScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
+          const Center(
             child: Image(
               image: AssetImage('images/logo1.png'),
               width: 125,
               height: 125,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
             color: const Color(0xFF46B177),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Text(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: const Text(
               'GoodieMap',
               style: TextStyle(
                   fontSize: 40,

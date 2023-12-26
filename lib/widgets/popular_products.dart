@@ -1,13 +1,9 @@
-// popular_products.dart
-
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/models/product_model.dart';
-// import 'package:goodiemap_app/screens/product_grid.dart';
-import 'package:goodiemap_app/widgets/product_carousel.dart';
 import 'package:goodiemap_app/widgets/widgets.dart';
 
 class PopularProduct extends StatelessWidget {
-  const PopularProduct({Key? key});
+  const PopularProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +12,12 @@ class PopularProduct extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 10),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Popular Products',
                   style: TextStyle(
                     fontSize: 25,
@@ -41,7 +38,7 @@ class PopularProduct extends StatelessWidget {
                       ).route(),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,
@@ -59,11 +56,12 @@ class PopularProduct extends StatelessWidget {
                 Product.products.where((product) => product.isPopular).toList(),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 20),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Recommended Products',
                   style: TextStyle(
                     fontSize: 25,
@@ -85,7 +83,7 @@ class PopularProduct extends StatelessWidget {
                       ).route(),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,

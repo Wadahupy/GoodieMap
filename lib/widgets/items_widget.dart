@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, avoid_unnecessary_containers, use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/material.dart';
 
 class itemWidget extends StatelessWidget {
@@ -7,7 +9,7 @@ class itemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 10, top: 10, right: 10),
           child: Text(
             'Products',
@@ -19,7 +21,7 @@ class itemWidget extends StatelessWidget {
           ),
         ),
         GridView.count(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           crossAxisCount: 2,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
@@ -27,7 +29,7 @@ class itemWidget extends StatelessWidget {
           shrinkWrap: true,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -36,12 +38,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -51,21 +53,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -76,7 +78,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -85,12 +87,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -100,21 +102,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -125,7 +127,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -134,12 +136,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -149,21 +151,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -174,7 +176,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -183,12 +185,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -198,21 +200,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -223,7 +225,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -232,12 +234,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -247,21 +249,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -272,7 +274,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -281,12 +283,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -296,21 +298,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -321,7 +323,7 @@ class itemWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -330,12 +332,12 @@ class itemWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 2,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -345,21 +347,21 @@ class itemWidget extends StatelessWidget {
                         height: 130,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'EDEN SINGLES/SLICES 10SX208G',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           '₱ 100.05',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFF276342),
+                            color: Color(0xfff276342),
                             fontWeight: FontWeight.bold,
                           ),
                         ),

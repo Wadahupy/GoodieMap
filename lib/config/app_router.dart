@@ -3,10 +3,10 @@ import 'package:goodiemap_app/models/category_model.dart';
 import 'package:goodiemap_app/models/product_model.dart';
 import 'package:goodiemap_app/screens/product/product_screen.dart';
 import 'package:goodiemap_app/screens/screens.dart';
-import 'package:goodiemap_app/screens/sign_up/sign_up_screen.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
+    // ignore: avoid_print
     print('this is route: ${settings.name}');
 
     switch (settings.name) {
@@ -28,6 +28,10 @@ class AppRouter {
         return SignIn.route();
       case SignUp.routeName:
         return SignUp.route();
+      case AccountSelect.routeName:
+        return AccountSelect.route();
+      case ForgotPass.routeName:
+        return ForgotPass.route();
 
       default:
         return _errorRoute();
@@ -36,9 +40,9 @@ class AppRouter {
 
   static Route _errorRoute() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: '/error'),
+      settings: const RouteSettings(name: '/error'),
       builder: (_) => Scaffold(
-        appBar: AppBar(title: Text('Error')),
+        appBar: AppBar(title: const Text('Error')),
       ),
     );
   }

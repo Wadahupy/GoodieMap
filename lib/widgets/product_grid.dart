@@ -16,7 +16,7 @@ class ProductGrid extends StatelessWidget {
 
   Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
+      settings: const RouteSettings(name: routeName),
       builder: (_) => this,
     );
   }
@@ -30,7 +30,7 @@ class ProductGrid extends StatelessWidget {
         iconTheme: const IconThemeData(color: Color(0xFF46B177), size: 50),
         title: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
             color: Color(0xFF46B177),
@@ -40,7 +40,7 @@ class ProductGrid extends StatelessWidget {
       ),
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.75,
           mainAxisSpacing: 5,

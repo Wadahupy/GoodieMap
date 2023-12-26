@@ -13,15 +13,15 @@ class FavoriteScreen extends StatelessWidget {
       body: BlocBuilder<FavoriteBloc, FavoriteState>(
         builder: (context, state) {
           if (state is FavoriteLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
           if (state is FavoriteLoaded) {
             return Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 100.0),
+                const Padding(
+                  padding: EdgeInsets.only(top: 100.0),
                   child: Text(
                     'MY FAVORITES',
                     style: TextStyle(
@@ -35,7 +35,7 @@ class FavoriteScreen extends StatelessWidget {
                   child: GridView.builder(
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.75,
                       mainAxisSpacing: 5,
@@ -54,7 +54,7 @@ class FavoriteScreen extends StatelessWidget {
               ],
             );
           } else {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
         },
       ),

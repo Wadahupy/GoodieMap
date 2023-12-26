@@ -10,7 +10,7 @@ class CartScreen extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
+      settings: const RouteSettings(name: routeName),
       builder: (_) => const CartScreen(),
     );
   }
@@ -86,17 +86,17 @@ class CartScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Total Price:',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
-                              '\₱ ' + state.cart.totalString,
-                              style: TextStyle(
+                              '₱ ${state.cart.totalString}',
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold),

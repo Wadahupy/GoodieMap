@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 // import 'package:flutter/material.dart';
 // import 'package:goodiemap_app/screens/home/home_screen.dart';
 

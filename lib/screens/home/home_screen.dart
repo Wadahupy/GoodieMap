@@ -1,14 +1,13 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:goodiemap_app/screens/favorites/favorite_screen.dart';
 import 'package:goodiemap_app/screens/screens.dart';
-import 'package:goodiemap_app/widgets/custom_AppBar.dart';
-import 'package:goodiemap_app/widgets/popular_products.dart';
 import 'package:goodiemap_app/widgets/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class homePage extends StatefulWidget {
-  const homePage({Key? key});
+  const homePage({Key? key}) : super(key: key);
 
   static const String routeName = '/';
   static Route route() {
@@ -26,14 +25,14 @@ class _homePageState extends State<homePage> {
   int currentTab = 0;
 
   final List<Widget> screens = [
-    homePage(),
-    MapScreen(),
-    FavoriteScreen(),
-    ProfileScreen(),
+    const homePage(),
+    const MapScreen(),
+    const FavoriteScreen(),
+    const ProfileScreen(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = homePage();
+  Widget currentScreen = const homePage();
 
   int activeIndex = 0;
   final urlimage = [
@@ -54,7 +53,7 @@ class _homePageState extends State<homePage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
-      appBar: isProfilePage ? null : CustomAppBar(),
+      appBar: isProfilePage ? null : const CustomAppBar(),
       body: PageStorage(
         bucket: bucket,
         child: currentScreen is homePage
@@ -65,7 +64,7 @@ class _homePageState extends State<homePage> {
                       SliverToBoxAdapter(
                         child: Column(
                           children: [
-                            SizedBox(height: 100),
+                            const SizedBox(height: 100),
                             CarouselSlider.builder(
                               itemCount: urlimage.length,
                               itemBuilder: (context, index, realIndex) {
@@ -88,7 +87,7 @@ class _homePageState extends State<homePage> {
                               padding: const EdgeInsets.only(top: 3, bottom: 5),
                               child: buildIndicator(),
                             ),
-                            Divider(
+                            const Divider(
                               thickness: 2,
                             ),
                             const PopularProduct(),
@@ -100,8 +99,8 @@ class _homePageState extends State<homePage> {
                 ],
               )
             : PageStorage(
-                child: currentScreen,
                 bucket: bucket,
+                child: currentScreen,
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -116,7 +115,7 @@ class _homePageState extends State<homePage> {
         shape: const CircularNotchedRectangle(),
         color: const Color(0xFF46B177),
         child: Container(
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +127,7 @@ class _homePageState extends State<homePage> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = homePage();
+                        currentScreen = const homePage();
                         currentTab = 0;
                       });
                     },
@@ -189,7 +188,7 @@ class _homePageState extends State<homePage> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = FavoriteScreen();
+                        currentScreen = const FavoriteScreen();
                         currentTab = 3;
                       });
                     },

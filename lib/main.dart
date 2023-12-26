@@ -1,20 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/config/app_router.dart';
-// import 'package:goodiemap_app/screens/home/home_screen.dart';
 import 'package:goodiemap_app/screens/screens.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import 'package:provider/provider.dart';
-// import 'pages/account_selection.dart';
-// import 'pages/onboarding.dart';
-
-void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // final prefs = await SharedPreferences.getInstance();
-  // showHome = prefs.getBool('showHome') ?? true;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const Myapp());
 }
 
@@ -34,7 +28,7 @@ class Myapp extends StatelessWidget {
             primaryColor: const Color(0xFF46B177),
           ),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: SplashScreen.routeName),
+          initialRoute: SignIn.routeName),
     );
 
     // routes: {

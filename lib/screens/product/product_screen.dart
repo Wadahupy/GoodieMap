@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
@@ -10,7 +12,7 @@ class productScreen extends StatelessWidget {
 
   static Route route({required Product product}) {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
+      settings: const RouteSettings(name: routeName),
       builder: (context) => productScreen(product: product),
     );
   }
@@ -30,18 +32,18 @@ class productScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: const Color(0xFF46B177), size: 50),
+        iconTheme: const IconThemeData(color: Color(0xFF46B177), size: 50),
       ),
       body: Column(
         children: [
-          Padding(padding: EdgeInsets.symmetric(horizontal: 300)),
+          const Padding(padding: EdgeInsets.symmetric(horizontal: 300)),
           Image.network(
             product.imgUrl,
             height: 200,
             width: 300,
           ),
           Container(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             width: 380,
             height: 389,
             decoration: BoxDecoration(
@@ -52,7 +54,7 @@ class productScreen extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 2,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -63,10 +65,11 @@ class productScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Text(
                     product.name,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -74,21 +77,21 @@ class productScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        '\₱ ${product.price}',
-                        style: TextStyle(
+                        '₱ ${product.price}',
+                        style: const TextStyle(
                           fontSize: 24,
-                          color: Color(0xFFF276342),
+                          color: Color(0xfff276342),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -96,16 +99,16 @@ class productScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
                               product.description,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
-                          Row(
+                          const Row(
                             children: [
                               SizedBox(
                                 width: 5,
@@ -113,8 +116,8 @@ class productScreen extends StatelessWidget {
                               // ... rest of the quantity code
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
                             child: Center(
                               child: Text(
                                 'LOCATION',
@@ -137,7 +140,7 @@ class productScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -148,27 +151,27 @@ class productScreen extends StatelessWidget {
                         //     .add(CartProductRemoved(product));
                       },
                       iconSize: 20,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.remove_circle,
-                        color: const Color(0xFF46B177),
+                        color: Color(0xFF46B177),
                         size: 25,
                       ),
                     ),
-                    Text(
+                    const Text(
                       '1',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF46B177)),
+                          color: Color(0xFF46B177)),
                     ),
                     IconButton(
                       onPressed: () {
                         // context.read<CartBloc>().add(CartProductAdded(product));
                       },
                       iconSize: 20,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.add_circle,
-                        color: const Color(0xFF46B177),
+                        color: Color(0xFF46B177),
                         size: 25,
                       ),
                     ),
@@ -177,7 +180,7 @@ class productScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Column(
             children: [
               ElevatedButton(
@@ -186,7 +189,7 @@ class productScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/cart');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFF46B177),
+                  backgroundColor: const Color(0xFF46B177),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
@@ -194,17 +197,17 @@ class productScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Container(
+                  child: SizedBox(
                     width: 250,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                            padding: EdgeInsets.only(right: 10),
-                            child: Icon(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: const Icon(
                               Icons.shopping_cart,
                             )),
-                        Text(
+                        const Text(
                           'ADD TO CART',
                           style: TextStyle(fontSize: 20),
                         ),
@@ -213,20 +216,19 @@ class productScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   context.read<CartBloc>().add(CartProductAdded(product));
                   Navigator.pushNamed(context, '/cart');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: const Color(0xFF46B177),
+                  foregroundColor: const Color(0xFF46B177),
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
-                    side: BorderSide(
-                        color: const Color(0xFF46B177),
-                        width: 2), // Outline color
+                    side: const BorderSide(
+                        color: Color(0xFF46B177), width: 2), // Outline color
                   ),
                   elevation: 0.0,
                 ),
@@ -240,18 +242,18 @@ class productScreen extends StatelessWidget {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 250,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: EdgeInsets.only(right: 10),
-                                child: Icon(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: const Icon(
                                   Icons.favorite,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 'FAVORITE',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),

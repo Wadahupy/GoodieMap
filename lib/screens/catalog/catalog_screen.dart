@@ -14,7 +14,7 @@ class CatalogScreen extends StatelessWidget {
   }
 
   final Category category;
-  const CatalogScreen({required this.category});
+  const CatalogScreen({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CatalogScreen extends StatelessWidget {
         title: Text(
           category.section,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 35,
             fontWeight: FontWeight.bold,
             color: Color(0xFF46B177),
@@ -38,7 +38,7 @@ class CatalogScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: GridView.builder(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.75,

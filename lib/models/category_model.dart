@@ -12,13 +12,13 @@ class Category extends Equatable {
   List<Object?> get props => [name, section, imageUrl];
 
   static List<Category> categories = [
-    Category(
+    const Category(
       name: 'Frozen Foods',
       section: 'SECTION 1',
       imageUrl:
           'https://assets.bonappetit.com/photos/57d6f59ac204478524d874a7/master/w_1600,c_limit/undefined',
     ),
-    Category(
+    const Category(
       name: 'Dairy and Deli',
       section: 'SECTION 2',
       imageUrl:

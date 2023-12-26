@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71960387681",
+    "project_id": "goodiemap",
+    "storage_bucket": "goodiemap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71960387681:android:cde43df4b32b94b60cca20",
+        "android_client_info": {
+          "package_name": "com.example.goodiemap_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuuRjQ-kkx-e0IdL6sekHYCwBDxWEcjB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

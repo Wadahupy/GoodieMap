@@ -46,7 +46,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       (event, emit) async {
         if (state is CartLoaded) {
           emit(
-            CartLoaded(
+            const CartLoaded(
               cart: Cart(products: []),
             ),
           );

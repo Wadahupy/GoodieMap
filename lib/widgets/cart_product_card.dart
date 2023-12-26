@@ -15,8 +15,8 @@ class CartProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8),
-      padding: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -25,7 +25,7 @@ class CartProductCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 3,
             blurRadius: 4,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -39,21 +39,21 @@ class CartProductCard extends StatelessWidget {
               height: 80,
               fit: BoxFit.cover,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     product.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
-                    ' \₱ ${product.price}',
-                    style: TextStyle(
+                    ' ₱ ${product.price}',
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     ),
@@ -68,17 +68,17 @@ class CartProductCard extends StatelessWidget {
                                   .read<CartBloc>()
                                   .add(CartProductRemoved(product));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.remove_circle,
-                              color: const Color(0xFF46B177),
+                              color: Color(0xFF46B177),
                             ),
                           ),
                           Text(
                             '$quantity',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFF46B177)),
+                                color: Color(0xFF46B177)),
                           ),
                           IconButton(
                             onPressed: () {
@@ -86,9 +86,9 @@ class CartProductCard extends StatelessWidget {
                                   .read<CartBloc>()
                                   .add(CartProductAdded(product));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.add_circle,
-                              color: const Color(0xFF46B177),
+                              color: Color(0xFF46B177),
                             ),
                           ),
                         ],
@@ -98,7 +98,7 @@ class CartProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: 40,
               height: 40,
