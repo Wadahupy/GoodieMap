@@ -28,7 +28,7 @@ class Myapp extends StatelessWidget {
             primaryColor: const Color(0xFF46B177),
           ),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: SignIn.routeName),
+          initialRoute: SplashScreen.routeName),
     );
 
     // routes: {

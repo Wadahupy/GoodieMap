@@ -24,34 +24,27 @@ class SplashScreen extends StatelessWidget {
       final prefs = await SharedPreferences.getInstance();
       showHome = prefs.getBool('showHome') ?? true;
 
-      Navigator.pushNamed(context, showHome ? Onboarding.routeName : '/');
+      Navigator.pushNamed(
+          context, showHome ? Onboarding.routeName : '/account');
     });
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Center(
-            child: Image(
-              image: AssetImage('images/logo1.png'),
-              width: 125,
-              height: 125,
+      body: Container(
+        color: Colors.white,
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Image(
+                image: AssetImage('assets/GoodieMap_Logo.png'),
+                width: 500,
+                height: 500,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            color: const Color(0xFF46B177),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: const Text(
-              'GoodieMap',
-              style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -28,10 +28,10 @@ class CartProductRemoved extends CartEvent {
   List<Object> get props => [product];
 }
 
-class RemoveAllProducts extends CartEvent {
+class RemoveProducts extends CartEvent {
   final Product product;
-
-  const RemoveAllProducts(this.product);
+  // Remove the product parameter from this event
+  const RemoveProducts(this.product);
   @override
   List<Object> get props => [product];
 }

@@ -109,7 +109,7 @@ class _IntroScreenState extends State<AccountSelect> {
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                           side: const BorderSide(
-                              color: Color(0xFF46B177), width: 2.0),
+                              color: Color(0xFF46B177), width: 3.0),
                         ),
                       ),
                     ),

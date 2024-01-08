@@ -21,13 +21,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(
             CartLoaded(
               cart: Cart(
-                products: List.from(state.cart.products)..add(event.product),
+                products: List<Product>.from(state.cart.products)
+                  ..add(event.product),
               ),
             ),
           );
         }
       },
     );
+
     on<CartProductRemoved>(
       (event, emit) async {
         if (state is CartLoaded) {
@@ -35,19 +37,26 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(
             CartLoaded(
               cart: Cart(
-                products: List.from(state.cart.products)..remove(event.product),
+                products: List<Product>.from(state.cart.products)
+                  ..remove(event.product),
               ),
             ),
           );
         }
       },
     );
-    on<RemoveAllProducts>(
+    on<RemoveProducts>(
       (event, emit) async {
         if (state is CartLoaded) {
+          final state = this.state as CartLoaded;
+
+          // Find the product to be removed based on equality check
+          final updatedProducts = List<Product>.from(state.cart.products)
+            ..removeWhere((product) => product == event.product);
+
           emit(
-            const CartLoaded(
-              cart: Cart(products: []),
+            CartLoaded(
+              cart: Cart(products: updatedProducts),
             ),
           );
         }

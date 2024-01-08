@@ -7,7 +7,7 @@ import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/models/models.dart';
 import 'package:goodiemap_app/models/product_model.dart';
 
-class productScreen extends StatelessWidget {
+class productScreen extends StatefulWidget {
   static const String routeName = '/product';
 
   static Route route({required Product product}) {
@@ -27,6 +27,13 @@ class productScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<productScreen> createState() => _productScreenState();
+}
+
+class _productScreenState extends State<productScreen> {
+  int quantitySelected = 1;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +45,7 @@ class productScreen extends StatelessWidget {
         children: [
           const Padding(padding: EdgeInsets.symmetric(horizontal: 300)),
           Image.network(
-            product.imgUrl,
+            widget.product.imgUrl,
             height: 200,
             width: 300,
           ),
@@ -64,7 +71,7 @@ class productScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Text(
-                    product.name,
+                    widget.product.name,
                     style: const TextStyle(
                         fontSize: 24, fontWeight: FontWeight.bold),
                   ),
@@ -77,7 +84,7 @@ class productScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        '₱ ${product.price}',
+                        '₱ ${widget.product.price}',
                         style: const TextStyle(
                           fontSize: 24,
                           color: Color(0xfff276342),
@@ -98,7 +105,7 @@ class productScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
-                              product.description,
+                              widget.product.description,
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.normal,
@@ -130,7 +137,7 @@ class productScreen extends StatelessWidget {
                           ),
                           Center(
                             child: Image.network(
-                              product.location,
+                              widget.product.location,
                               height: 160,
                               width: 200,
                             ),
@@ -146,6 +153,12 @@ class productScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
+                        setState(() {
+                          if (quantitySelected > 1) {
+                            quantitySelected--;
+                          }
+                        });
+
                         // context
                         //     .read<CartBloc>()
                         //     .add(CartProductRemoved(product));
@@ -157,15 +170,18 @@ class productScreen extends StatelessWidget {
                         size: 25,
                       ),
                     ),
-                    const Text(
-                      '1',
-                      style: TextStyle(
+                    Text(
+                      '$quantitySelected',
+                      style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF46B177)),
                     ),
                     IconButton(
                       onPressed: () {
+                        setState(() {
+                          quantitySelected++;
+                        });
                         // context.read<CartBloc>().add(CartProductAdded(product));
                       },
                       iconSize: 20,
@@ -185,7 +201,9 @@ class productScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  context.read<CartBloc>().add(CartProductAdded(product));
+                  context
+                      .read<CartBloc>()
+                      .add(CartProductAdded(widget.product));
                   Navigator.pushNamed(context, '/cart');
                 },
                 style: ElevatedButton.styleFrom(
@@ -219,7 +237,9 @@ class productScreen extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  context.read<CartBloc>().add(CartProductAdded(product));
+                  context
+                      .read<CartBloc>()
+                      .add(CartProductAdded(widget.product));
                   Navigator.pushNamed(context, '/cart');
                 },
                 style: ElevatedButton.styleFrom(
@@ -238,7 +258,7 @@ class productScreen extends StatelessWidget {
                       onTap: () {
                         context
                             .read<FavoriteBloc>()
-                            .add(AddFavoriteProduct(product));
+                            .add(AddFavoriteProduct(widget.product));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),

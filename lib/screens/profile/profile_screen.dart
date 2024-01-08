@@ -20,29 +20,43 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   Uint8List? _image;
   String _profilePictureUrl = '';
+  bool _isMounted = false;
 
   @override
   void initState() {
     super.initState();
+    _isMounted = true;
     loadProfilePicture();
+  }
+
+  @override
+  void dispose() {
+    _isMounted = false;
+    super.dispose();
   }
 
   Future<void> loadProfilePicture() async {
     print("Loading profile picture...");
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser != null) {
-      final snapshot = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(currentUser.email)
-          .get();
+    if (_profilePictureUrl.isEmpty) {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        final snapshot = await FirebaseFirestore.instance
+            .collection("users")
+            .doc(currentUser.email)
+            .get();
 
-      if (snapshot.exists) {
-        final userData = snapshot.data() as Map<String, dynamic>;
-        final profilePictureUrl = userData['profilePictureUrl'];
-        print("Profile picture URL: $profilePictureUrl");
-        setState(() {
-          _profilePictureUrl = profilePictureUrl ?? '';
-        });
+        if (_isMounted && snapshot.exists) {
+          final userData = snapshot.data() as Map<String, dynamic>;
+          final profilePictureUrl = userData['profilePictureUrl'];
+          print("Profile picture URL: $profilePictureUrl");
+
+          // Check if the widget is still mounted before calling setState
+          if (_isMounted) {
+            setState(() {
+              _profilePictureUrl = profilePictureUrl ?? '';
+            });
+          }
+        }
       }
     }
   }

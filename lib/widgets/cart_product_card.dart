@@ -108,7 +108,7 @@ class CartProductCard extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  context.read<CartBloc>().add(RemoveAllProducts(product));
+                  context.read<CartBloc>().add(RemoveProducts(product));
                 },
                 child: const Icon(
                   Icons.delete_forever,

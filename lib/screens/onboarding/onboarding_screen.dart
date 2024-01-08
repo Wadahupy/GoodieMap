@@ -92,7 +92,7 @@ class _OnboardingState extends State<Onboarding> {
       ),
       bottomSheet: isLastPage
           ? Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               color: const Color(0xFF46B177),
               child: TextButton(
                 style: TextButton.styleFrom(
@@ -107,7 +107,7 @@ class _OnboardingState extends State<Onboarding> {
                   'Get Started',
                   style: TextStyle(
                     fontSize: 24,
-                    color: const Color(0xFF46B177),
+                    color: Color(0xFF46B177),
                   ),
                 ),
                 onPressed: () {
@@ -118,7 +118,7 @@ class _OnboardingState extends State<Onboarding> {
           : Container(
               color: const Color(0xFF46B177),
               height: 120,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -138,7 +138,7 @@ class _OnboardingState extends State<Onboarding> {
                           color: Colors.black.withOpacity(0.3),
                           spreadRadius: 2,
                           blurRadius: 5,
-                          offset: Offset(-2, 2),
+                          offset: const Offset(-2, 2),
                         ),
                       ],
                     ),
@@ -178,12 +178,12 @@ class _OnboardingState extends State<Onboarding> {
                           color: Colors.black.withOpacity(0.3),
                           spreadRadius: 2,
                           blurRadius: 5,
-                          offset: Offset(2, 2),
+                          offset: const Offset(2, 2),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 1,
                   )
                 ],
@@ -228,7 +228,7 @@ class _OnboardingState extends State<Onboarding> {
                     color: Color.fromARGB(255, 255, 255, 255), fontSize: 16),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
           ],

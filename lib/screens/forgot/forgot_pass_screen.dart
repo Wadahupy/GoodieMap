@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +34,7 @@ class _ForgotPass extends State<ForgotPass> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
+            return const AlertDialog(
               content: Text('Password reset link sent! Check your Email'),
             );
           });
@@ -87,8 +89,8 @@ class _ForgotPass extends State<ForgotPass> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Reset Link will be Send through your Email',
                             style: TextStyle(
@@ -153,7 +155,7 @@ class _ForgotPass extends State<ForgotPass> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Center(
                           child: SizedBox(
                             width: 350,
