@@ -11,3 +11,5 @@ export 'sign_in/sign_in_screen.dart';
 export 'sign_up/sign_up_screen.dart';
 export 'search/search_screen.dart';
 export 'forgot/forgot_pass_screen.dart';
+export 'product/product_screen.dart';
+export 'info/info_screen.dart';

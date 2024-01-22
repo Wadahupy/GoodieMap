@@ -3,6 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -60,6 +62,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF46B177),
@@ -86,12 +89,12 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                 height: 543,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.background,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -100,15 +103,21 @@ class _SignUpState extends State<SignUp> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 10.0, left: 10.0),
                           child: Text(
                             'Username',
                             style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: themeProvider.isDarkMode
+                                  ? Colors
+                                      .white // Set the text color for dark mode
+                                  : Colors
+                                      .black45, // Set the text color for light mode
+                            ),
                           ),
                         ),
                         Column(
@@ -123,8 +132,10 @@ class _SignUpState extends State<SignUp> {
                               controller: _userController,
                               autofocus: true,
                               keyboardType: TextInputType.text,
+                              cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                fillColor: Colors.white,
+                                fillColor:
+                                    Theme.of(context).colorScheme.onBackground,
                                 hintText: "Enter Username",
                                 prefixIcon: const Icon(Icons.person),
                                 prefixIconColor: MaterialStateColor.resolveWith(
@@ -156,15 +167,21 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 10.0, left: 10.0),
                           child: Text(
                             'Email',
                             style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: themeProvider.isDarkMode
+                                  ? Colors
+                                      .white // Set the text color for dark mode
+                                  : Colors
+                                      .black45, // Set the text color for light mode
+                            ),
                           ),
                         ),
                         Column(
@@ -184,6 +201,7 @@ class _SignUpState extends State<SignUp> {
                               controller: _emailController,
                               autofocus: true,
                               keyboardType: TextInputType.emailAddress,
+                              cursorColor: Colors.green,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 hintText: "Enter Email",
@@ -217,15 +235,21 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 10.0, left: 10.0),
                           child: Text(
                             'Password',
                             style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: themeProvider.isDarkMode
+                                  ? Colors
+                                      .white // Set the text color for dark mode
+                                  : Colors
+                                      .black45, // Set the text color for light mode
+                            ),
                           ),
                         ),
                         Column(
@@ -296,7 +320,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 15),
                         Center(
                           child: SizedBox(
                             width: 350,
@@ -326,7 +350,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
                         const Center(
                           child: Text(
                             'By Signing in with us, you agree to our',
@@ -359,7 +383,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 height: 100,
                 width: 420,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.background,
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

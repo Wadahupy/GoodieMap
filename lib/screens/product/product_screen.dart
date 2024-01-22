@@ -1,11 +1,12 @@
 // ignore_for_file: camel_case_types, use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/models/models.dart';
 import 'package:goodiemap_app/models/product_model.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class productScreen extends StatefulWidget {
   static const String routeName = '/product';
@@ -35,6 +36,7 @@ class _productScreenState extends State<productScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -54,7 +56,7 @@ class _productScreenState extends State<productScreen> {
             width: 380,
             height: 389,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
@@ -85,9 +87,13 @@ class _productScreenState extends State<productScreen> {
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         '₱ ${widget.product.price}',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 24,
-                          color: Color(0xfff276342),
+                          color: themeProvider.isDarkMode
+                              ? Colors
+                                  .greenAccent // Set the text color for dark mode
+                              : const Color(
+                                  0xFF46B177), // Set the text color for light mode,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -148,51 +154,6 @@ class _productScreenState extends State<productScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (quantitySelected > 1) {
-                            quantitySelected--;
-                          }
-                        });
-
-                        // context
-                        //     .read<CartBloc>()
-                        //     .add(CartProductRemoved(product));
-                      },
-                      iconSize: 20,
-                      icon: const Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFF46B177),
-                        size: 25,
-                      ),
-                    ),
-                    Text(
-                      '$quantitySelected',
-                      style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF46B177)),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          quantitySelected++;
-                        });
-                        // context.read<CartBloc>().add(CartProductAdded(product));
-                      },
-                      iconSize: 20,
-                      icon: const Icon(
-                        Icons.add_circle,
-                        color: Color(0xFF46B177),
-                        size: 25,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
@@ -224,10 +185,11 @@ class _productScreenState extends State<productScreen> {
                             padding: const EdgeInsets.only(right: 10),
                             child: const Icon(
                               Icons.shopping_cart,
+                              color: Colors.white,
                             )),
                         const Text(
                           'ADD TO CART',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ],
                     ),
@@ -235,55 +197,43 @@ class _productScreenState extends State<productScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  context
-                      .read<CartBloc>()
-                      .add(CartProductAdded(widget.product));
-                  Navigator.pushNamed(context, '/cart');
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: const Color(0xFF46B177),
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    side: const BorderSide(
-                        color: Color(0xFF46B177), width: 2), // Outline color
-                  ),
-                  elevation: 0.0,
-                ),
-                child: BlocBuilder<FavoriteBloc, FavoriteState>(
-                  builder: (context, state) {
-                    return InkWell(
-                      onTap: () {
-                        context
-                            .read<FavoriteBloc>()
-                            .add(AddFavoriteProduct(widget.product));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: SizedBox(
-                          width: 250,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: const Icon(
-                                  Icons.favorite,
-                                ),
-                              ),
-                              const Text(
-                                'FAVORITE',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+              SizedBox(
+                width: 322,
+                height: 60,
+                child: TextButton(
+                  onPressed: () {
+                    context
+                        .read<FavoriteBloc>()
+                        .add(AddFavoriteProduct(widget.product));
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.transparent),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        side: const BorderSide(
+                            color: Color(0xFF46B177), width: 3.0),
+                      ),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.favorite,
+                        color: Color(0xFF46B177),
+                      ),
+                      Text(
+                        'ADD TO FAVORITE',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF46B177),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

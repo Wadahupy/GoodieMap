@@ -49,9 +49,14 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0.0,
           toolbarHeight: 70,
-          title: const Text("GoodieMap"),
+          title: const Text(
+            "GoodieMap",
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
           actions: [
             Row(
               children: [
@@ -62,7 +67,10 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       delegate: CustomSearchDelegate(),
                     );
                   },
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
                 ),
                 PopupMenuButton(
                   onSelected: (value) {
@@ -83,7 +91,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       child: Text('Price: Low to High'),
                     ),
                   ],
-                  icon: const Icon(Icons.filter_alt_outlined),
+                  icon: const Icon(Icons.filter_alt_outlined,
+                      color: Colors.white),
                 ),
               ],
             )
