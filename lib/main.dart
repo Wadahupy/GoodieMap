@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/config/app_router.dart';
+import 'package:goodiemap_app/models/product_model.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
+import 'package:goodiemap_app/repositories/local_storage/local_storage_repository.dart';
 import 'package:goodiemap_app/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -20,6 +24,8 @@ Future<void> main() async {
             projectId: "goodiemap"));
   }
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductAdapter());
   runApp(const Myapp());
 }
 
@@ -32,7 +38,11 @@ class Myapp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
-        BlocProvider(create: (_) => FavoriteBloc()..add(StartFavorite())),
+        BlocProvider(
+          create: (_) => FavoriteBloc(
+            localStorageRepository: LocalStorageRepository(),
+          )..add(StartFavorite()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -50,11 +60,4 @@ class Myapp extends StatelessWidget {
       ),
     );
   }
-
-  // routes: {
-  //   // '/': (context) => showHome ? const Onboarding() : const homePage(),
-  //   // '/cart': (context) => const CartScreen(),
-  //   // '/catalog': (context) => const catalogScreen(),
-  //   // '/product': (context) => const productScreen(),
-  // },
 }
