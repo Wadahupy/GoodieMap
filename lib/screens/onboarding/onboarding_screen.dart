@@ -119,73 +119,70 @@ class _OnboardingState extends State<Onboarding> {
               color: const Color(0xFF46B177),
               height: 120,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      controller.previousPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                      size: 70,
-                      shadows: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(-2, 2),
-                        ),
-                      ],
+                  SmoothPageIndicator(
+                    controller: controller,
+                    count: 4,
+                    effect: WormEffect(
+                      spacing: 5,
+                      dotColor: const Color.fromARGB(255, 206, 206, 206),
+                      activeDotColor: Colors.teal.shade700,
+                    ),
+                    onDotClicked: (index) => controller.animateToPage(
+                      index,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Center(
-                      child: SmoothPageIndicator(
-                        controller: controller,
-                        count: 4,
-                        effect: WormEffect(
-                          spacing: 5,
-                          dotColor: const Color.fromARGB(255, 206, 206, 206),
-                          activeDotColor: Colors.teal.shade700,
-                        ),
-                        onDotClicked: (index) => controller.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          controller.previousPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 70,
+                          shadows: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(-2, 2),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      controller.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                      size: 70,
-                      shadows: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(2, 2),
+                      const SizedBox(width: 1),
+                      IconButton(
+                        onPressed: () {
+                          controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 70,
+                          shadows: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(2, 2),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    width: 1,
-                  )
                 ],
               ),
             ),

@@ -6,9 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'dart:typed_data';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -198,6 +200,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                       ),
+                      Positioned(
+                        top: 35,
+                        right: 10,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/info');
+                          },
+                        ),
+                      ),
                       Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -239,7 +254,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: IconButton(
                                     onPressed: selectImage,
                                     icon: const Icon(Icons.add_a_photo),
-                                    color: Colors.black87,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ],
@@ -273,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 const SizedBox(width: 5),
                                 Text(
-                                  currentUser.email!,
+                                  UserData['email'],
                                   style: const TextStyle(
                                       fontSize: 18, color: Colors.white),
                                 ),
@@ -286,12 +301,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(
                       height: 50), // Adjust the height based on your layout
-                  ElevatedButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/forgot');
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.background,
                       shadowColor: Colors.grey.withOpacity(0.5),
                       shape: const RoundedRectangleBorder(),
                       elevation: 5,
@@ -300,6 +315,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: const EdgeInsets.all(15.0),
                       child: SizedBox(
                         width: 300,
+                        height: 25,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -325,14 +341,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Container(
-                      height: 55,
+                      height: 70,
                       margin: const EdgeInsets.all(5),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.background,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withOpacity(0.4),
                             spreadRadius: 0,
                             blurRadius: 5,
                             offset: const Offset(0, 5),
@@ -365,7 +381,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  TextButton(
                     onPressed: () {
                       showDialog(
                         context: context,
@@ -373,24 +389,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: const Text(
                             "Logout",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           content: const Text(
                             'Are you sure you want to logout?',
                             style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black45),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                           actions: [
                             TextButton(
-                              child: const Text(
+                              child: Text(
                                 'No',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.black87),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
                               ),
                               onPressed: () => Navigator.pop(context),
                             ),
@@ -410,8 +428,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.background,
                       shadowColor: Colors.grey.withOpacity(0.5),
                       shape: const RoundedRectangleBorder(),
                       elevation: 5,
@@ -420,6 +438,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: const EdgeInsets.all(15.0),
                       child: SizedBox(
                         width: 300,
+                        height: 25,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -466,19 +485,41 @@ class SwitchExample extends StatefulWidget {
 }
 
 class _SwitchExampleState extends State<SwitchExample> {
-  bool light = true;
+  late bool isNightMode;
+
+  @override
+  void initState() {
+    super.initState();
+    loadNightModeState();
+  }
+
+  Future<void> loadNightModeState() async {
+    final preferences = await SharedPreferences.getInstance();
+    setState(() {
+      isNightMode = preferences.getBool('nightMode') ?? false;
+    });
+  }
+
+  Future<void> saveNightModeState(bool value) async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setBool('nightMode', value);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Switch(
-      // This bool value toggles the switch.
-      value: light,
+      value: themeProvider.isDarkMode,
       activeColor: Colors.green,
       onChanged: (bool value) {
-        // This is called when the user toggles the switch.
         setState(() {
-          light = value;
+          isNightMode = value;
         });
+
+        final provider = Provider.of<ThemeProvider>(context, listen: false);
+        provider.toggleTheme(value);
+        saveNightModeState(value);
       },
     );
   }

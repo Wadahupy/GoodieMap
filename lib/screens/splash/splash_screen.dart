@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:goodiemap_app/screens/onboarding/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool showHome = true;
@@ -24,8 +23,7 @@ class SplashScreen extends StatelessWidget {
       final prefs = await SharedPreferences.getInstance();
       showHome = prefs.getBool('showHome') ?? true;
 
-      Navigator.pushNamed(
-          context, showHome ? Onboarding.routeName : '/account');
+      Navigator.pushNamed(context, '/account');
     });
     return Scaffold(
       body: Container(
