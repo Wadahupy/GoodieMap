@@ -38,36 +38,6 @@ class Product extends Equatable {
       required this.isPopular,
       required this.isRecommended});
 
-  // factory Product.fromJson(Map<String, dynamic> json) {
-  //   return Product(
-  //     id: json['id'] ?? '',
-  //     name: json['name'] ?? '',
-  //     category: json['category'] ?? '',
-  //     imgUrl: json['imgUrl'] ?? '',
-  //     price: (json['price'] ?? 0.0).toDouble(),
-  //     description: json['description'] ?? '',
-  //     barcode: (json['barcode'] ?? 0).toDouble(),
-  //     location: json['location'] ?? '',
-  //     isPopular: json['isPopular'] ?? false,
-  //     isRecommended: json['isRecommended'] ?? false,
-  //   );
-  // }
-
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'id': id,
-  //     'name': name,
-  //     'category': category,
-  //     'imgUrl': imgUrl,
-  //     'price': price,
-  //     'description': description,
-  //     'barcode': barcode,
-  //     'location': location,
-  //     'isPopular': isPopular,
-  //     'isRecommended': isRecommended,
-  //   };
-  // }
-
   @override
   List<Object?> get props => [
         id,

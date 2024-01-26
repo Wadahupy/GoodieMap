@@ -2,8 +2,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -34,31 +36,133 @@ class _SignInState extends State<SignIn> {
 
   void _handleLogin() async {
     try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      // Check if the email is saved in shared preferences
+      if (prefs.containsKey('userEmail') &&
+          prefs.getBool('rememberMe') == true) {
+        _email = prefs.getString('userEmail') ?? '';
+        _emailController.text = _email;
+        _rememberMe = true;
+      } else {
+        _email = _emailController.text;
+      }
+
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: _email,
         password: _password,
       );
 
-      // User successfully logged in
-      print('User Logged In: ${userCredential.user?.email}');
+      // Check if the user's email is verified
+      if (userCredential.user?.emailVerified == true) {
+        // User successfully logged in
+        print('User Logged In: ${userCredential.user?.email}');
 
-      // Navigate to the desired screen (e.g., home screen)
-      Navigator.popAndPushNamed(context, '/');
+        if (_rememberMe) {
+          // Save user's email and "Remember Me" preference to shared preferences
+          prefs.setString('userEmail', _email);
+          prefs.setBool('rememberMe', true);
+        } else {
+          // Clear saved email and "Remember Me" preference if remember me is false
+          prefs.remove('userEmail');
+          prefs.remove('rememberMe');
+        }
+
+        // Navigate to the desired screen (e.g., home screen)
+        Navigator.popAndPushNamed(context, '/');
+      } else {
+        // If email is not verified, send a verification email
+        await userCredential.user?.sendEmailVerification();
+
+        // Display a message to inform the user to verify their email
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: SizedBox(
+              width: double.infinity, // Set width to maximum available width
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/smartphone.svg', // Replace with your actual SVG file path
+                    height: 40,
+                    width: 40,
+                  ),
+                  const SizedBox(width: 10),
+                  const Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Verify your email!',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'Email is not verified. Check your email to verify your account.',
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       // Handle sign-in errors
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Invalid email or password. Please try again.'),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.redAccent,
           ),
         );
       } else {
-        // Handle other sign-in errors
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error during Login: $e'),
-            backgroundColor: Colors.red,
+            content: SizedBox(
+              width: double.infinity, // Set width to maximum available width
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/warning.svg', // Replace with your actual SVG file path
+                    height: 40,
+                    width: 40,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Login Failed!',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          'Error in Login: $e',
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            backgroundColor: Colors.redAccent,
           ),
         );
       }

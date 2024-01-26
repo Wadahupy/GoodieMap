@@ -24,12 +24,12 @@ class LocalStorageRepository extends BaseLocalStorageRepository {
   }
 
   @override
-  Future<void> clearFavorite(Box box) {
-    throw UnimplementedError();
+  Future<void> clearFavorite(Box box) async {
+    await box.clear();
   }
 
   @override
-  Future<void> removeProductFromFavorite(Box box, Product product) {
-    throw UnimplementedError();
+  Future<void> removeProductFromFavorite(Box box, Product product) async {
+    await box.delete(product.id);
   }
 }

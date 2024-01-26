@@ -2,6 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPass extends StatefulWidget {
   const ForgotPass({super.key});
@@ -51,6 +53,7 @@ class _ForgotPass extends State<ForgotPass> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF46B177),
@@ -80,7 +83,7 @@ class _ForgotPass extends State<ForgotPass> {
                 height: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.background,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -89,25 +92,34 @@ class _ForgotPass extends State<ForgotPass> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Reset Link will be Send through your Email',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black45),
+                                color: themeProvider.isDarkMode
+                                    ? Colors
+                                        .white // Set the text color for dark mode
+                                    : Colors
+                                        .black45), // Set the text color for light mode
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 10.0, left: 10.0),
                           child: Text(
                             'Email',
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black45),
+                                color: themeProvider.isDarkMode
+                                    ? Colors
+                                        .white // Set the text color for dark mode
+                                    : Colors
+                                        .black45), // Set the text color for light mode
                           ),
                         ),
                         Column(

@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/models/models.dart';
@@ -205,6 +206,66 @@ class _productScreenState extends State<productScreen> {
                     context
                         .read<FavoriteBloc>()
                         .add(AddFavoriteProduct(widget.product));
+
+                    // Show custom SnackBar
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              height: 90,
+                              decoration: BoxDecoration(
+                                color: Colors.pinkAccent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Row(
+                                children: [
+                                  SizedBox(width: 48),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Successfully Added to Favorites!',
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Check your favorites to see the product',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 30,
+                              left: 10,
+                              child: SvgPicture.asset(
+                                "assets/favorite.svg",
+                                height: 48,
+                                width: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                        duration: const Duration(seconds: 2),
+                        behavior: SnackBarBehavior.fixed, // Set to fixed
+                        elevation: 0,
+                        backgroundColor: Colors.transparent,
+                      ),
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor:

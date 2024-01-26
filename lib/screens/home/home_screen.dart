@@ -1,9 +1,10 @@
-// ignore_for_file: camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously
+// ignore_for_file: camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/models/models.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:goodiemap_app/screens/screens.dart';
@@ -78,23 +79,51 @@ class _homePageState extends State<homePage> {
         // If no match found, display a Snackbar
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Container(
-              padding: const EdgeInsets.all(16),
-              height: 90,
-              decoration: const BoxDecoration(
-                  color: Colors.redAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  'No product registered with barcode $barcodeScanRes',
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+            content: Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 95,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 48),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Oh snap!',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'No product registered with barcode $barcodeScanRes',
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                Positioned(
+                  bottom: 30,
+                  left: 10,
+                  child: SvgPicture.asset("assets/error.svg",
+                      height: 48, width: 40),
+                ),
+              ],
             ),
             duration: const Duration(seconds: 2),
             behavior: SnackBarBehavior.floating,
@@ -125,11 +154,22 @@ class _homePageState extends State<homePage> {
           showExitSnackBar(context);
           return false;
         }
-        return true;
+
+        // If on the home page, exit the app
+        if (currentScreen is homePage) {
+          SystemNavigator.pop();
+        } else {
+          // If on another page, pop the current route
+          Navigator.pop(context);
+        }
+
+        return false; // Prevent the default back button behavior
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: themeProvider.isDarkMode
+            ? Colors.grey.shade900 // Set the text color for dark mode
+            : Colors.white, // Set the text color for light mode,
         appBar: isProfilePage ? null : const CustomAppBar(),
         body: PageStorage(
           bucket: bucket,
