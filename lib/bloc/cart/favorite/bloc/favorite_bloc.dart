@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:goodiemap_app/models/favorite_model.dart';
 import 'package:goodiemap_app/repositories/local_storage/local_storage_repository.dart';
 import 'package:hive/hive.dart';
@@ -35,8 +36,11 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         ),
       );
     } catch (e, stackTrace) {
-      print('Error in StartFavorite: $e');
-      print('StackTrace: $stackTrace');
+      if (kDebugMode) {
+        print('Error in StartFavorite: $e');
+        print('StackTrace: $stackTrace');
+      }
+
       emit(FavoriteError());
     }
   }
@@ -48,16 +52,20 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     if (state is FavoriteLoaded) {
       try {
         Box box = await _localStorageRepository.openBox();
-        _localStorageRepository.addProductToFavorite(box, event.product);
+        List<Product> currentProducts =
+            (state as FavoriteLoaded).favorite.products;
 
-        emit(
-          FavoriteLoaded(
-            favorite: Favorite(
-              products: List.from((state as FavoriteLoaded).favorite.products)
-                ..add(event.product),
+        if (!currentProducts.contains(event.product)) {
+          _localStorageRepository.addProductToFavorite(box, event.product);
+
+          emit(
+            FavoriteLoaded(
+              favorite: Favorite(
+                products: List.from(currentProducts)..add(event.product),
+              ),
             ),
-          ),
-        );
+          );
+        }
       } on Exception {
         emit(FavoriteError());
       }

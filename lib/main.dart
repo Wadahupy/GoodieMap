@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +28,34 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
+
+  // Check if the user is already signed in
+  if (FirebaseAuth.instance.currentUser == null) {
+    // If not signed in, attempt auto-login
+    await attemptAutoLogin();
+  }
   runApp(const Myapp());
+}
+
+Future<void> attemptAutoLogin() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? storedEmail = prefs.getString('email');
+  String? storedPassword = prefs.getString('password');
+
+  // If both email and password are available, attempt to sign in
+  if (storedEmail != null && storedPassword != null) {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: storedEmail,
+        password: storedPassword,
+      );
+    } catch (e) {
+      // Handle sign-in errors, if any
+      if (kDebugMode) {
+        print("Auto-login error: $e");
+      }
+    }
+  }
 }
 
 class Myapp extends StatelessWidget {

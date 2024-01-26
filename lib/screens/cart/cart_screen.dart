@@ -30,6 +30,7 @@ class CartScreen extends StatelessWidget {
             color: Color(0xFF46B177),
           ),
         ),
+        centerTitle: true,
       ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {

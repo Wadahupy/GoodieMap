@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/models/product_model.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:goodiemap_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class PopularProduct extends StatelessWidget {
   const PopularProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
       color: Theme.of(context).colorScheme.background,
       child: Column(
@@ -38,12 +41,15 @@ class PopularProduct extends StatelessWidget {
                       ).route(),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black54,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white // Set the text color for dark mode
+                          : Colors
+                              .black54, // Set the text color for light mode,
                     ),
                   ),
                 ),
@@ -83,12 +89,15 @@ class PopularProduct extends StatelessWidget {
                       ).route(),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black54,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white // Set the text color for dark mode
+                          : Colors
+                              .black54, // Set the text color for light mode,,
                     ),
                   ),
                 ),

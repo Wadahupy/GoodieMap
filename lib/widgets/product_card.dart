@@ -7,6 +7,7 @@ import 'package:goodiemap_app/bloc/cart/favorite/bloc/favorite_bloc.dart';
 import 'package:goodiemap_app/models/product_model.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -112,25 +113,57 @@ class ProductCard extends StatelessWidget {
                                     .add(CartProductAdded(product));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Container(
-                                      padding: const EdgeInsets.all(16),
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF46B177),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.only(top: 10.0),
-                                        child: Text(
-                                          'Product added to cart',
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                    content: Stack(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(16),
+                                          height: 90,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF46B177),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: const Row(
+                                            children: [
+                                              SizedBox(width: 48),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Product Added to Cart!',
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Check your cart to see the product',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ),
+                                        Positioned(
+                                          bottom: 30,
+                                          left: 10,
+                                          child: SvgPicture.asset(
+                                              "assets/shopping-cart.svg",
+                                              height: 48,
+                                              width: 40),
+                                        ),
+                                      ],
                                     ),
                                     duration: const Duration(seconds: 2),
                                     behavior: SnackBarBehavior.floating,
@@ -201,24 +234,54 @@ class ProductCard extends StatelessWidget {
                                 .add(CartProductAdded(product));
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  height: 70,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFF46B177),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: const Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: Text(
-                                      'Product added to cart',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                content: Stack(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(16),
+                                      height: 90,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF46B177),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: const Row(
+                                        children: [
+                                          SizedBox(width: 48),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Successfully Added to Cart!',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Check your cart to see the product',
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      bottom: 30,
+                                      left: 10,
+                                      child: SvgPicture.asset(
+                                          "assets/shopping-cart.svg",
+                                          height: 48,
+                                          width: 40),
+                                    ),
+                                  ],
                                 ),
                                 duration: const Duration(seconds: 2),
                                 behavior: SnackBarBehavior.floating,
