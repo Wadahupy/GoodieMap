@@ -27,10 +27,11 @@ class FavoriteScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF46B177),
+                      color: Color.fromARGB(255, 97, 133, 113),
                     ),
                   ),
                 ),
+                // Favorite product Gridview builder
                 Expanded(
                   child: GridView.builder(
                     padding:

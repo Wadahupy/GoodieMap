@@ -37,7 +37,7 @@ class PopularProduct extends StatelessWidget {
                         products: Product.products
                             .where((product) => product.isPopular)
                             .toList(),
-                        title: 'POPULAR PRODUCTS', // Pass the appropriate title
+                        title: 'POPULAR PRODUCTS',
                       ).route(),
                     );
                   },
@@ -84,8 +84,7 @@ class PopularProduct extends StatelessWidget {
                         products: Product.products
                             .where((product) => product.isRecommended)
                             .toList(),
-                        title:
-                            'RECOMMENDED PRODUCTS', // Pass the appropriate title
+                        title: 'RECOMMENDED PRODUCTS',
                       ).route(),
                     );
                   },
@@ -104,6 +103,7 @@ class PopularProduct extends StatelessWidget {
               ],
             ),
           ),
+          // Select product is recommended
           ProductCarousel(
             products: Product.products
                 .where((product) => product.isRecommended)

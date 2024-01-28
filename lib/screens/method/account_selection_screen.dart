@@ -39,10 +39,10 @@ class _IntroScreenState extends State<AccountSelect> {
       onWillPop: () async {
         _controller.dispose(); // Dispose the video controller
 
-        // Use SystemNavigator.pop to exit the app
+        // SystemNavigator.pop to exit the app
         SystemNavigator.pop();
-
-        return false; // Prevent the default back button behavior
+        // Prevent the default back button behavior
+        return false;
       },
       child: Scaffold(
         body: Stack(

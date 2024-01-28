@@ -37,6 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
+  // Firebase picture profile request
   Future<void> loadProfilePicture() async {
     print("Loading profile picture...");
     if (_profilePictureUrl.isEmpty) {
@@ -62,8 +63,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
     }
   }
-  // Pick image from local device
 
+  // Pick image from local device
   Future<void> selectImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -324,8 +325,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                        height: 50), // Adjust the height based on your layout
+                    const SizedBox(height: 50),
+                    // Firebase auth change password
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/forgot');
@@ -445,6 +446,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontWeight: FontWeight.w500,
                                       color: Colors.red),
                                 ),
+                                // Logout
                                 onPressed: () {
                                   _handleLogout();
                                 },
@@ -504,6 +506,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
+// Switch logic for light and dark mode
 class SwitchExample extends StatelessWidget {
   const SwitchExample({Key? key}) : super(key: key);
 

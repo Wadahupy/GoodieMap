@@ -16,6 +16,7 @@ class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Gridview builder for category section
       body: Padding(
         padding: const EdgeInsets.only(top: 100.0),
         child: GridView.builder(

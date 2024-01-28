@@ -106,7 +106,7 @@ class InforScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Special thanks to Puregold Store Cubao for their support in making GoodieMap App a valuable tool for grocery shoppers.',
+                'Special thanks to Puregold Store for their support in making GoodieMap App a valuable tool for grocery shoppers.',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,

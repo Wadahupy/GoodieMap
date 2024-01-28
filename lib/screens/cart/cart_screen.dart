@@ -40,75 +40,79 @@ class CartScreen extends StatelessWidget {
             );
           }
           if (state is CartLoaded) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 20.0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 610,
-                        child: ListView.builder(
-                          itemCount: state.cart
-                              .productQuantity(state.cart.products)
-                              .keys
-                              .length,
-                          itemBuilder: (context, index) {
-                            return CartProductCard(
-                              product: state.cart
-                                  .productQuantity(state.cart.products)
-                                  .keys
-                                  .elementAt(index),
-                              quantity: state.cart
-                                  .productQuantity(state.cart.products)
-                                  .values
-                                  .elementAt(index),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SafeArea(
-                  child: Padding(
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 20.0, horizontal: 20.0),
-                    child: Container(
-                      height: 70,
-                      width: 500,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF46B177),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Total Price:',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Text(
-                              '₱ ${state.cart.totalString}',
-                              style: const TextStyle(
+                        horizontal: 20, vertical: 20.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 610,
+                          // Product quantity refractor
+                          child: ListView.builder(
+                            itemCount: state.cart
+                                .productQuantity(state.cart.products)
+                                .keys
+                                .length,
+                            itemBuilder: (context, index) {
+                              return CartProductCard(
+                                product: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .keys
+                                    .elementAt(index),
+                                quantity: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .values
+                                    .elementAt(index),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 20.0),
+                      child: Container(
+                        height: 70,
+                        width: 500,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF46B177),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Total Price:',
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                                  fontSize: 17,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              // Display total price
+                              Text(
+                                '₱ ${state.cart.totalString}',
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ), // Move it here
-              ],
+                ],
+              ),
             );
           } else {
             return const Text('Something went wrong');

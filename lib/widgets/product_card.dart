@@ -54,14 +54,28 @@ class ProductCard extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/product', arguments: product);
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Center(
                 child: Container(
                   child: Image.network(
                     product.imgUrl,
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),

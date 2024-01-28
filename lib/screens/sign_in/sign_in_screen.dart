@@ -78,11 +78,11 @@ class _SignInState extends State<SignIn> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: SizedBox(
-              width: double.infinity, // Set width to maximum available width
+              width: double.infinity,
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/smartphone.svg', // Replace with your actual SVG file path
+                    'assets/smartphone.svg',
                     height: 40,
                     width: 40,
                   ),
@@ -337,7 +337,7 @@ class _SignInState extends State<SignIn> {
                                     color: Colors.grey,
                                   ),
                                   onPressed: () {
-                                    // Update the state i.e., toggle the state of passwordVisible variable
+                                    // Update the state of toggle
                                     setState(() {
                                       _passwordVisible = !_passwordVisible;
                                     });
@@ -441,7 +441,7 @@ class _SignInState extends State<SignIn> {
               ),
               Container(
                 height: 100,
-                width: 420,
+                width: 1000,
                 color: Theme.of(context).colorScheme.background,
                 child: Center(
                   child: Row(

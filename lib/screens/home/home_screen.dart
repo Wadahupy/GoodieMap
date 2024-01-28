@@ -3,13 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/models/models.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:goodiemap_app/screens/screens.dart';
 import 'package:goodiemap_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class homePage extends StatefulWidget {
@@ -41,34 +41,34 @@ class _homePageState extends State<homePage> {
   Widget currentScreen = const homePage();
   int activeIndex = 0;
   DateTime? currentBackPressTime;
+  // Banner request url
   final urlimage = [
-    'https://d5anwn521ljmo.cloudfront.net/mageplaza/bannerslider/banner/image/m/a/main_snackshack_986x384.jpg',
-    'https://d5anwn521ljmo.cloudfront.net/mageplaza/bannerslider/banner/image/m/a/main_skinlove_986x384.jpg',
-    'https://d5anwn521ljmo.cloudfront.net/mageplaza/bannerslider/banner/image/m/a/main_elevateyourkitchen_986x384.jpg',
-    'https://d5anwn521ljmo.cloudfront.net/mageplaza/bannerslider/banner/image/m/a/main_flavor_spice_986x384.jpg'
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2FBanner.jfif?alt=media&token=f6843445-5612-4f87-b5bc-651a5ca45086',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2FBanner%202.jfif?alt=media&token=580275c3-c1fb-4850-8737-fc7e3df967e8',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%203.jpg?alt=media&token=d74ef201-de19-42a0-bfef-85feacfb3c02',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%204.jfif?alt=media&token=22b44b57-49be-4453-942c-a3c3c077cb61',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%205.jfif?alt=media&token=ad465399-d1e2-4cf9-8e0d-628f0c0f8421',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%206.jfif?alt=media&token=6daada91-c9e4-484a-bdbe-12c293947822',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%207.jfif?alt=media&token=4264d0f3-af9c-4ccd-bfde-9131140dbf94',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%208.jfif?alt=media&token=975f018f-57d4-47fd-a440-55521800de08',
+    'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%209.jpg?alt=media&token=b8ddc222-4f58-4917-ada1-1483f5e757c6'
   ];
-
-  Future<void> scanBarcodeNormal() async {
-    String barcodeScanRes;
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666",
-        'Cancel',
-        true,
-        ScanMode.BARCODE,
-      );
-      debugPrint(barcodeScanRes);
-
-      // Check if the scanned barcode matches any product
+  // Barcode scanner
+  Future<void> barcodescanner() async {
+    var res = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SimpleBarcodeScannerPage(),
+        ));
+    setState(() {
       Product? scannedProduct;
       try {
         scannedProduct = Product.products.firstWhere(
-          (product) => product.barcode == barcodeScanRes,
+          (product) => product.barcode == double.parse(res),
         );
       } catch (e) {
         scannedProduct = null;
       }
-
       if (scannedProduct != null) {
         // If match found, navigate to the product screen
         Navigator.push(
@@ -78,6 +78,7 @@ class _homePageState extends State<homePage> {
       } else {
         // If no match found, display a Snackbar
         ScaffoldMessenger.of(context).showSnackBar(
+          // Custom snackbar
           SnackBar(
             content: Stack(
               children: [
@@ -104,7 +105,7 @@ class _homePageState extends State<homePage> {
                               ),
                             ),
                             Text(
-                              'No product registered with barcode $barcodeScanRes',
+                              'No product registered with barcode $res',
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
@@ -132,11 +133,7 @@ class _homePageState extends State<homePage> {
           ),
         );
       }
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
-    if (!mounted) return;
-    setState(() {});
+    });
   }
 
   @override
@@ -162,8 +159,8 @@ class _homePageState extends State<homePage> {
           // If on another page, pop the current route
           Navigator.pop(context);
         }
-
-        return false; // Prevent the default back button behavior
+        // Prevent the default back button behavior
+        return false;
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -226,10 +223,12 @@ class _homePageState extends State<homePage> {
                   child: currentScreen,
                 ),
         ),
+        // Custom notch for barcode scanner
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            scanBarcodeNormal();
+            //scanBarcodeNormal();
+            barcodescanner();
           },
           backgroundColor: const Color.fromARGB(255, 1, 95, 43),
           shape: const CircleBorder(),
@@ -243,6 +242,7 @@ class _homePageState extends State<homePage> {
             ],
           ),
         ),
+        // Custom bottom navigation bar
         bottomNavigationBar: BottomAppBar(
           padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
           notchMargin: 10,
@@ -384,6 +384,7 @@ class _homePageState extends State<homePage> {
     );
   }
 
+  // Banner indicator
   Widget buildIndicator() => AnimatedSmoothIndicator(
         effect: const ExpandingDotsEffect(
             dotWidth: 8,
@@ -393,12 +394,12 @@ class _homePageState extends State<homePage> {
         activeIndex: activeIndex,
         count: urlimage.length,
       );
-
+  // Banner slider
   Widget buildImage(String urlImage, int index) => Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.only(left: 6, right: 3),
         child: Image.network(urlImage, fit: BoxFit.fill),
       );
-
+  // Exit logic behavior
   void showExitSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
