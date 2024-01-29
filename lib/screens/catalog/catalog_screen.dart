@@ -39,7 +39,7 @@ class CatalogScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Add the text above the GridView
+          // Display the text above the GridView
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
@@ -52,7 +52,7 @@ class CatalogScreen extends StatelessWidget {
               ),
             ),
           ),
-
+          // Category section Gridview
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),

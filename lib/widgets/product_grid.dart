@@ -11,7 +11,7 @@ class ProductGrid extends StatelessWidget {
   const ProductGrid({
     Key? key,
     required this.products,
-    required this.title, // Added title parameter
+    required this.title,
   }) : super(key: key);
 
   Route route() {
@@ -21,6 +21,7 @@ class ProductGrid extends StatelessWidget {
     );
   }
 
+  // Product GridView in see-all
   @override
   Widget build(BuildContext context) {
     return Scaffold(

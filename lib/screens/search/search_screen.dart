@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/widgets/custom_search.dart';
@@ -44,7 +44,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       onWillPop: () async {
         // Handle the back button behavior
         Navigator.popUntil(context, ModalRoute.withName('/'));
-        return false; // Prevent default back button behavior
+        // Prevent default back button behavior
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -115,6 +116,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
             ),
           ),
         ),
+        // Display search result
         body: GridView.builder(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -27,6 +27,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
       backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0.0,
       toolbarHeight: 70,
+      leading: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Image.asset(
+          'assets/GoodieMap_Logo(2).png',
+          width: 40,
+          height: 40,
+          color: Colors.white,
+        ),
+      ),
       title: const Text(
         "GoodieMap",
         style: TextStyle(

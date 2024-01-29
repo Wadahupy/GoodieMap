@@ -8,7 +8,7 @@ class ProductCarousel extends StatelessWidget {
     super.key,
     required this.products,
   });
-
+  // Product carousel listview builder
   @override
   Widget build(BuildContext context) {
     return SizedBox(

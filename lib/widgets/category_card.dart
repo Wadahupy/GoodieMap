@@ -36,6 +36,21 @@ class CategoryCard extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 160,
                     width: 500,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      }
+                    },
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(

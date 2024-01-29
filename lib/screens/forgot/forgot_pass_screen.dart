@@ -29,6 +29,7 @@ class _ForgotPass extends State<ForgotPass> {
     super.dispose();
   }
 
+  // Forgot password firebase
   Future _handleForgot() async {
     try {
       await FirebaseAuth.instance
