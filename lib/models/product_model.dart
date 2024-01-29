@@ -418,5 +418,19 @@ class Product extends Equatable {
       isPopular: false,
       isRecommended: false,
     ),
+    const Product(
+      id: 26,
+      name: 'Oishi in Water Orange',
+      category: 'Drinks & Canned Goods',
+      imgUrl:
+          'https://d2j6dbq0eux0bg.cloudfront.net/images/17197054/3579603248.jpg',
+      price: 21.85,
+      description: 'OISHI IN WATER ORANGE',
+      barcode: 4800194112796,
+      location:
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%202.jpg?alt=media&token=8d8e502b-6f0b-45a7-adbe-c694805f6489',
+      isPopular: false,
+      isRecommended: false,
+    ),
   ];
 }
