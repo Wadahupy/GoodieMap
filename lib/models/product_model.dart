@@ -101,8 +101,7 @@ class Product extends Equatable {
       imgUrl:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FMAGGI%20MAGIC%20SARAP%208GX16S%20BUY%203%20GET%20FREE%201.jpg?alt=media&token=c1b68e4a-69c5-4a00-baed-e398935b9526',
       price: 193.95,
-      description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+      description: 'MAGGI MAGIC SARAP 8G AND 16S',
       barcode: 12345678910,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%201.jpg?alt=media&token=198dbb2b-a709-4446-96ec-fac490c3ba77',
@@ -209,7 +208,7 @@ class Product extends Equatable {
     ),
     const Product(
       id: 12,
-      name: 'ufc Hot&Spicy Banana ketchup',
+      name: 'Ufc Hot&Spicy Banana ketchup',
       category: 'Condiments Sauces & Dress',
       imgUrl:
           'https://shopmetro.ph/banilad-supermarket/wp-content/uploads/2021/03/SM2069227-10.jpg',

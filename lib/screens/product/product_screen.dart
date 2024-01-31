@@ -146,7 +146,7 @@ class _productScreenState extends State<productScreen> {
                                 ),
                               ],
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(top: 8.0),
                               child: Center(
                                 child: Text(

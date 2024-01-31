@@ -34,6 +34,11 @@ Future<void> main() async {
     // If not signed in, attempt auto-login
     await attemptAutoLogin();
   }
+  // Create a variable to store the theme provider
+  final themeProvider = ThemeProvider();
+
+  // Load the theme data
+  await themeProvider.loadThemeMode();
   runApp(const Myapp());
 }
 
@@ -50,7 +55,7 @@ Future<void> attemptAutoLogin() async {
         password: storedPassword,
       );
     } catch (e) {
-      // Handle sign-in errors, if any
+      // Handle sign-in errors
       if (kDebugMode) {
         print("Auto-login error: $e");
       }
@@ -59,34 +64,40 @@ Future<void> attemptAutoLogin() async {
 }
 
 class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+  const Myapp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
-        BlocProvider(
-          create: (_) => FavoriteBloc(
-            localStorageRepository: LocalStorageRepository(),
-          )..add(StartFavorite()),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        builder: (context, _) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
-          return MaterialApp(
-            themeMode: themeProvider.themeMode,
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        themeProvider.initApp(context);
+
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
+            BlocProvider(
+              create: (_) => FavoriteBloc(
+                localStorageRepository: LocalStorageRepository(),
+              )..add(StartFavorite()),
+            ),
+          ],
+          child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: MyThemes.lightTheme,
-            darkTheme: MyThemes.darkTheme,
-            onGenerateRoute: AppRouter.onGenerateRoute,
-            initialRoute: SplashScreen.routeName,
-          );
-        },
-      ),
+            builder: (context, _) {
+              return MaterialApp(
+                themeMode: themeProvider.themeMode,
+                debugShowCheckedModeBanner: false,
+                theme: MyThemes.lightTheme,
+                darkTheme: MyThemes.darkTheme,
+                onGenerateRoute: AppRouter.onGenerateRoute,
+                initialRoute: SplashScreen.routeName,
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

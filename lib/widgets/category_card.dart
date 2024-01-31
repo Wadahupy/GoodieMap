@@ -33,7 +33,7 @@ class CategoryCard extends StatelessWidget {
                 children: [
                   Image.network(
                     category.imageUrl,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     height: 160,
                     width: 500,
                     loadingBuilder: (BuildContext context, Widget child,
