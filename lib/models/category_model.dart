@@ -46,7 +46,7 @@ class Category extends Equatable {
       name: 'Bath & Hygiene',
       section: 'SECTION 6',
       imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%204.jpg?alt=media&token=9772d44e-b85a-4e62-80eb-1c6b9538f362',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%206.jpg?alt=media&token=ad6cf2b5-c003-4466-9286-2d986a7272d2',
     ),
   ];
 }
