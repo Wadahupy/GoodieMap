@@ -47,11 +47,6 @@ class _homePageState extends State<homePage> {
     'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2FBanner%202.jfif?alt=media&token=580275c3-c1fb-4850-8737-fc7e3df967e8',
     'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%203.jpg?alt=media&token=d74ef201-de19-42a0-bfef-85feacfb3c02',
     'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%204.jfif?alt=media&token=22b44b57-49be-4453-942c-a3c3c077cb61',
-    // 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%205.jfif?alt=media&token=ad465399-d1e2-4cf9-8e0d-628f0c0f8421',
-    // 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%206.jfif?alt=media&token=6daada91-c9e4-484a-bdbe-12c293947822',
-    // 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%207.jfif?alt=media&token=4264d0f3-af9c-4ccd-bfde-9131140dbf94',
-    // 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%208.jfif?alt=media&token=975f018f-57d4-47fd-a440-55521800de08',
-    // 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%209.jpg?alt=media&token=b8ddc222-4f58-4917-ada1-1483f5e757c6'
   ];
   // Barcode scanner
   Future<void> barcodescanner() async {

@@ -13,3 +13,4 @@ export 'search/search_screen.dart';
 export 'forgot/forgot_pass_screen.dart';
 export 'product/product_screen.dart';
 export 'info/info_screen.dart';
+export 'history/purchased_history_screen.dart';

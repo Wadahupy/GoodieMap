@@ -8,12 +8,14 @@ import 'package:goodiemap_app/config/app_router.dart';
 import 'package:goodiemap_app/models/product_model.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:goodiemap_app/repositories/local_storage/local_storage_repository.dart';
+import 'package:goodiemap_app/repositories/repositories.dart';
 import 'package:goodiemap_app/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +30,11 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
+  );
 
   // Check if the user is already signed in
   if (FirebaseAuth.instance.currentUser == null) {
