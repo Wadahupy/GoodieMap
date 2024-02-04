@@ -60,7 +60,7 @@ class Product extends Equatable {
       imgUrl: 'https://pgmobile.puregold.com.ph/images/7622210641311.jpg?v=25',
       price: 100.05,
       description: 'EDEN SINGLES 208G 10 X SLICES',
-      barcode: 123456789,
+      barcode: 7622210892126,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%201.jpg?alt=media&token=198dbb2b-a709-4446-96ec-fac490c3ba77',
       isPopular: false,
@@ -382,7 +382,7 @@ class Product extends Equatable {
       imgUrl:
           'https://www.snrshopping.com/upload/product/Nivea%20Men%20Facial%20Anti%20Acne%20Oil%20Clear%20Foam%20100g-9/Nivea%20Men%20Facial%20Anti%20Acne%20Oil%20Clear%20Foam%20100g-jGuivRESVh.jpg',
       price: 268.00,
-      description: 'Nivea Men Acne oil Clear 100g',
+      description: 'NIVEA MEN ACNE OIL CLEAR 100G',
       barcode: 4005808845330,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%205.jpg?alt=media&token=81c61f2f-8be7-4966-bcaa-bb5055ca6f0b',
@@ -396,7 +396,7 @@ class Product extends Equatable {
       imgUrl:
           'https://babycompany.ph/cdn/shop/products/Cetaphil---_BABY_-Gentle-Wash-_-Shampoo-Pump.jpg?v=1671420972',
       price: 523,
-      description: 'Cetaphil Baby Gentle Wash & Shampoo 400mL',
+      description: 'CETAPHIL GENTE WASH AND SHAMPOO 400ML',
       barcode: 9318637044009,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%206.jpg?alt=media&token=ad6cf2b5-c003-4466-9286-2d986a7272d2',
@@ -410,7 +410,7 @@ class Product extends Equatable {
       imgUrl:
           'https://lalascosmetics.eu/cdn/shop/products/GREEN_75d4cca2-9898-411f-bbd0-d1719794820e_1200x1200.jpg?v=1640723138',
       price: 523,
-      description: 'Sunsilk Green shampoo 15 ML',
+      description: 'SUNSILK GREEN SHAMPOO 15 ML',
       barcode: 4800888169709,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%206.jpg?alt=media&token=ad6cf2b5-c003-4466-9286-2d986a7272d2',
@@ -428,6 +428,63 @@ class Product extends Equatable {
       barcode: 4800194112796,
       location:
           'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%202.jpg?alt=media&token=8d8e502b-6f0b-45a7-adbe-c694805f6489',
+      isPopular: false,
+      isRecommended: false,
+    ),
+    const Product(
+      id: 27,
+      name: 'High Endurance 14G',
+      category: 'Babycare & Beauty',
+      imgUrl:
+          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/o/l/old-spice-high-endurance-anti-perspirantdeodorant-cream-fresh-14g_2.jpg',
+      price: 104.00,
+      description:
+          'OLD SPICE HIGH ENDURANCE ANTI PERSPIRANT/DEODORANT CREAM FRESH 14G',
+      barcode: 020800306348,
+      location:
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%205.jpg?alt=media&token=81c61f2f-8be7-4966-bcaa-bb5055ca6f0b',
+      isPopular: false,
+      isRecommended: false,
+    ),
+    const Product(
+      id: 28,
+      name: 'Milo Energy Drink 24G',
+      category: 'Drinks & Canned Goods',
+      imgUrl:
+          'https://imartgrocersph.com/wp-content/uploads/2020/09/Milo-24g-_-12_s.png',
+      price: 10.00,
+      description: 'MILO POWDER ENERGY DRINK SACHET 24G',
+      barcode: 4800361413480,
+      location:
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%202.jpg?alt=media&token=8d8e502b-6f0b-45a7-adbe-c694805f6489',
+      isPopular: true,
+      isRecommended: false,
+    ),
+    const Product(
+      id: 29,
+      name: 'Pimple Eraser Cleansing Soap 90G',
+      category: 'Babycare & Beauty',
+      imgUrl:
+          'https://myquickfx.com/wp-content/uploads/2021/09/PE-Bar-Soap.jpg',
+      price: 104.00,
+      description: 'QUICK FX PIMPLE ERASER CLEASING BAR SOAP 90G',
+      barcode: 4806530451086,
+      location:
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%205.jpg?alt=media&token=81c61f2f-8be7-4966-bcaa-bb5055ca6f0b',
+      isPopular: false,
+      isRecommended: false,
+    ),
+    const Product(
+      id: 30,
+      name: 'Cleene Gel Hand Sanitizer 60ml',
+      category: 'Bath & Hygiene',
+      imgUrl:
+          'https://zbga.shopsuki.ph/cdn/shop/products/4800067126967_1024x.jpg?v=1696846207',
+      price: 523,
+      description: 'CLEENE ALCOHOL GEL HAND SANITIZER 60ML',
+      barcode: 4800067126967,
+      location:
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/sections%2FSection%206.jpg?alt=media&token=ad6cf2b5-c003-4466-9286-2d986a7272d2',
       isPopular: false,
       isRecommended: false,
     ),

@@ -9,6 +9,7 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
+  List<SavedCart> savedCarts = [];
   CartBloc() : super(CartLoading()) {
     on<CartStarted>((event, emit) async {
       await Future<void>.delayed(const Duration(seconds: 1));
@@ -23,6 +24,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
               cart: Cart(
                 products: List<Product>.from(state.cart.products)
                   ..add(event.product),
+                savedCarts: List<SavedCart>.from(savedCarts),
               ),
             ),
           );
@@ -39,12 +41,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
               cart: Cart(
                 products: List<Product>.from(state.cart.products)
                   ..remove(event.product),
+                savedCarts: List<SavedCart>.from(savedCarts),
               ),
             ),
           );
         }
       },
     );
+
     on<RemoveProducts>(
       (event, emit) async {
         if (state is CartLoaded) {
@@ -56,7 +60,54 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
           emit(
             CartLoaded(
-              cart: Cart(products: updatedProducts),
+              cart: Cart(
+                  products: updatedProducts,
+                  savedCarts: List<SavedCart>.from(savedCarts)),
+            ),
+          );
+        }
+      },
+    );
+
+    on<SaveCartEvent>(
+      (event, emit) async {
+        if (state is CartLoaded) {
+          final state = this.state as CartLoaded;
+
+          final savedCart = SavedCart(
+            products: List<Product>.from(
+                state.cart.products), // Save only the products in the cart
+            date: DateTime.now(),
+          );
+
+          savedCarts.add(savedCart);
+
+          emit(
+            CartLoaded(
+              cart: Cart(
+                products: const [], // Clear the current cart after saving
+                savedCarts: List<SavedCart>.from(savedCarts),
+              ),
+            ),
+          );
+        }
+      },
+    );
+    on<AddSavedCartToCart>(
+      (event, emit) async {
+        if (state is CartLoaded) {
+          final state = this.state as CartLoaded;
+
+          // Add all products from the selected saved cart to the current cart
+          final updatedProducts = List<Product>.from(state.cart.products)
+            ..addAll(event.savedCart.products);
+
+          emit(
+            CartLoaded(
+              cart: Cart(
+                products: updatedProducts,
+                savedCarts: state.cart.savedCarts,
+              ),
             ),
           );
         }
@@ -64,53 +115,3 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
   }
 }
-    
-  // @override
-  // Stream<CartState> mapEventToState(
-  //   CartEvent event,
-  // ) async* {
-  //   if (event is CartStarted) {
-  //     yield* _mapCartStartedToState();
-  //   } else if (event is CartProductAdded) {
-  //     yield* _mapCartProductAddedToState(event, state);
-  //   } else if (event is CartProductRemoved) {
-  //     yield* _mapCartProductRemovedToState(event, state);
-  //   }
-  // }
-
-  // Stream<CartState> _mapCartStartedToState() async* {
-  //   yield CartLoading();
-  //   try {
-  //     await Future<void>.delayed(const Duration(seconds: 1));
-  //     yield const CartLoaded();
-  //   } catch (_) {}
-  // }
-
-  // Stream<CartState> _mapCartProductAddedToState(
-  //     CartProductAdded event, CartState state) async* {
-  //   if (state is CartLoaded) {
-  //     try {
-  //       yield CartLoaded(
-  //         cart: Cart(
-  //           products: List.from(state.cart.products)..add(event.product),
-  //         ),
-  //       );
-  //     } catch (_) {}
-  //   }
-  // }
-
-  // Stream<CartState> _mapCartProductRemovedToState(
-  //   CartProductRemoved event,
-  //   CartState state,
-  // ) async* {
-  //   if (state is CartLoaded) {
-  //     try {
-  //       yield CartLoaded(
-  //         cart: Cart(
-  //           products: List.from(state.cart.products)..remove(event.product),
-  //         ),
-  //       );
-  //     } catch (_) {}
-  //   }
-  // }
-

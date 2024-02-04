@@ -33,6 +33,8 @@ class AppRouter {
         return ForgotPass.route();
       case InforScreen.routeName:
         return InforScreen.route();
+      case SavedCartsScreen.routeName:
+        return SavedCartsScreen.route();
 
       default:
         return _errorRoute();
