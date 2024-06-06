@@ -84,7 +84,7 @@ class _ForgotPass extends State<ForgotPass> {
                 height: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -139,9 +139,9 @@ class _ForgotPass extends State<ForgotPass> {
                                 fillColor: Colors.white,
                                 hintText: "Enter Email",
                                 prefixIcon: const Icon(Icons.email),
-                                prefixIconColor: MaterialStateColor.resolveWith(
+                                prefixIconColor: WidgetStateColor.resolveWith(
                                     (states) =>
-                                        states.contains(MaterialState.focused)
+                                        states.contains(WidgetState.focused)
                                             ? Colors.green
                                             : Colors.grey),
                                 hintStyle: const TextStyle(
@@ -180,9 +180,9 @@ class _ForgotPass extends State<ForgotPass> {
                                 }
                               },
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                     const Color(0xFF057A3B)),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50.0),
                                   ),

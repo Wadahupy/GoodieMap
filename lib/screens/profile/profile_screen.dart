@@ -138,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         content: TextField(
           autofocus: true,
-          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
           decoration: InputDecoration(
             hintText: "Enter new $field",
             hintStyle: const TextStyle(color: Colors.grey),
@@ -154,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               'Cancel',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             onPressed: () => Navigator.pop(context),
@@ -333,7 +333,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       style: TextButton.styleFrom(
                         backgroundColor:
-                            Theme.of(context).colorScheme.background,
+                            Theme.of(context).colorScheme.surface,
                         shadowColor: Colors.grey.withOpacity(0.5),
                         shape: const RoundedRectangleBorder(),
                         elevation: 5,
@@ -372,7 +372,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         margin: const EdgeInsets.all(5),
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.surface,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.4),
@@ -435,7 +435,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontWeight: FontWeight.w500,
                                       color: Theme.of(context)
                                           .colorScheme
-                                          .onBackground),
+                                          .onSurface),
                                 ),
                                 onPressed: () => Navigator.pop(context),
                               ),
@@ -457,7 +457,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       style: TextButton.styleFrom(
                         backgroundColor:
-                            Theme.of(context).colorScheme.background,
+                            Theme.of(context).colorScheme.surface,
                         shadowColor: Colors.grey.withOpacity(0.5),
                         shape: const RoundedRectangleBorder(),
                         elevation: 5,

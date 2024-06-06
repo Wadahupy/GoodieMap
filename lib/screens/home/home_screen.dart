@@ -1,5 +1,6 @@
-// ignore_for_file: camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously, deprecated_member_use
+// ignore_for_file: camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously, deprecated_member_use, non_constant_identifier_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
@@ -48,6 +49,9 @@ class _homePageState extends State<homePage> {
     'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%203.jpg?alt=media&token=d74ef201-de19-42a0-bfef-85feacfb3c02',
     'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/banner%2Fbanner%204.jfif?alt=media&token=22b44b57-49be-4453-942c-a3c3c077cb61',
   ];
+  Future<void> _handleRefresh() async {
+    return await Future.delayed(const Duration(seconds:1));
+  }
   // Barcode scanner
   Future<void> barcodescanner() async {
     var res = await Navigator.push(
@@ -163,60 +167,99 @@ class _homePageState extends State<homePage> {
             ? Colors.grey.shade900 // Set the text color for dark mode
             : Colors.white, // Set the text color for light mode,
         appBar: isProfilePage ? null : const CustomAppBar(),
-        body: PageStorage(
-          bucket: bucket,
-          child: currentScreen is homePage
-              ? Stack(
-                  children: [
-                    CustomScrollView(
-                      slivers: [
-                        SliverToBoxAdapter(
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 120),
-                              CarouselSlider.builder(
-                                itemCount: urlimage.length,
-                                itemBuilder: (context, index, realIndex) {
-                                  final urlImage = urlimage[index];
-                                  return buildImage(urlImage, index);
-                                },
-                                options: CarouselOptions(
-                                  height: 150,
-                                  autoPlay: true,
-                                  viewportFraction: 1,
-                                  onPageChanged: (int index,
-                                      CarouselPageChangedReason reason) {
-                                    setState(() {
-                                      activeIndex = index;
-                                    });
+        body: RefreshIndicator(
+          onRefresh: _handleRefresh,
+          displacement: 120,
+          edgeOffset: 20,
+          color: const Color.fromARGB(255, 6, 185, 126),
+          backgroundColor:  Colors.white,
+          child: PageStorage(
+            bucket: bucket,
+            child: currentScreen is homePage
+                ? Stack(
+                    children: [
+                      CustomScrollView(
+                        slivers: [
+                          SliverToBoxAdapter(
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 120),
+                                CarouselSlider.builder(
+                                  itemCount: urlimage.length,
+                                  itemBuilder: (context, index, realIndex) {
+                                    final urlImage = urlimage[index];
+                                    return buildImage(urlImage, index);
+                                  },
+                                  options: CarouselOptions(
+                                    height: 150,
+                                    autoPlay: true,
+                                    viewportFraction: 1,
+                                    onPageChanged: (int index,
+                                        CarouselPageChangedReason reason) {
+                                      setState(() {
+                                        activeIndex = index;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 3, bottom: 5),
+                                  child: buildIndicator(),
+                                ),
+                                Divider(
+                                  color: themeProvider.isDarkMode
+                                      ? Colors
+                                          .white // Set the text color for dark mode
+                                      : Colors
+                                          .black26, // Set the text color for light mode,
+                                  thickness: 2,
+                                ),
+                                const PopularProduct(),
+                                const SizedBox(height: 20), // Add some space between popular products and grid view
+                                const Text(
+                                  'All Products',
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF46B177),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                GridView.builder(
+                                  shrinkWrap: true, // Wrap the grid view with a SizedBox
+                                  physics: const NeverScrollableScrollPhysics(), // Disable scrolling of the grid view
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.75,
+                                    mainAxisSpacing: 5,
+                                    crossAxisSpacing: 5,
+                                  ),
+                                  itemCount: Product.products.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    final product = Product.products[index];
+                                    return ProductCard(
+                                      product: product,
+                                      widthFactor: 2,
+                                    );
                                   },
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 3, bottom: 5),
-                                child: buildIndicator(),
-                              ),
-                              Divider(
-                                color: themeProvider.isDarkMode
-                                    ? Colors
-                                        .white // Set the text color for dark mode
-                                    : Colors
-                                        .black26, // Set the text color for light mode,
-                                thickness: 2,
-                              ),
-                              const PopularProduct(),
-                            ],
+                                    
+                    
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              : PageStorage(
-                  bucket: bucket,
-                  child: currentScreen,
-                ),
+                        ],
+                    
+                      ),
+                    ],
+                  )
+                : PageStorage(
+                    bucket: bucket,
+                    child: currentScreen,
+                  ),
+          ),
         ),
         // Custom notch for barcode scanner
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -392,7 +435,24 @@ class _homePageState extends State<homePage> {
   // Banner slider
   Widget buildImage(String urlImage, int index) => Container(
         padding: const EdgeInsets.only(left: 6, right: 3),
-        child: Image.network(urlImage, fit: BoxFit.fill),
+          child:  CachedNetworkImage(
+          imageUrl: urlImage, 
+            placeholder: (context, url,) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+          // ignore: avoid_types_as_parameter_names
+          imageBuilder: (context,ImageProvider){
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: ImageProvider,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            );
+          }
+        ),
       );
   // Exit logic behavior
   void showExitSnackBar(BuildContext context) {

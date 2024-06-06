@@ -57,7 +57,7 @@ class Product extends Equatable {
       id: 1,
       name: 'Eden Singles 208g',
       category: 'Condiments Sauces & Dress',
-      imgUrl: 'https://pgmobile.puregold.com.ph/images/7622210641311.jpg?v=25',
+      imgUrl: 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FEDEN%20SINGLESS.jpg?alt=media&token=55fa1faf-f987-4d1d-86fd-0c84b08a5427',
       price: 100.05,
       description: 'EDEN SINGLES 208G 10 X SLICES',
       barcode: 7622210892126,
@@ -70,8 +70,7 @@ class Product extends Equatable {
       id: 2,
       name: 'Cheez Whiz Plain 210g',
       category: 'Condiments Sauces & Dress',
-      imgUrl:
-          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FCHEEZ%20WHIZ%20PLAIN%20210G.jpg?alt=media&token=02dd1aae-4ecf-4273-a446-35f43320db66',
+      imgUrl: 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FCHEEZ%20WHIZ%20PLAIN%20210G.jpg?alt=media&token=02dd1aae-4ecf-4273-a446-35f43320db66',
       price: 81.00,
       description: 'CHEEZ WHIZ PLAIN ORIGINAL JAR 210G',
       barcode: 12345678910,
@@ -84,8 +83,7 @@ class Product extends Equatable {
       id: 3,
       name: 'Eden filled cheese 160g',
       category: 'Condiments Sauces & Dress',
-      imgUrl:
-          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FEDEN%20FILLED%20CHEESE%20160G%20BUY%202%20PCS%20%2C%20SAVE%2013%25%20OFF.jpg?alt=media&token=37ff6b88-0efa-40de-90ad-0ca8e548f86d',
+      imgUrl: 'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FEDEN%20FILLED%20CHEESE%20160G%20BUY%202%20PCS%20%2C%20SAVE%2013%25%20OFF.jpg?alt=media&token=37ff6b88-0efa-40de-90ad-0ca8e548f86d',
       price: 99.00,
       description: 'EDEN FILLED CHEESE 160G ORIGINAL',
       barcode: 12345678910,
@@ -113,7 +111,7 @@ class Product extends Equatable {
       name: 'Knorr sinigang sampalok gabi mix',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://www.shoppersmart.com.ph/cdn/shop/products/Knorr_Sinigang_Mix_W_gabi_44g_1024x.jpg?v=1603363175',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FKnorr_Sinigang_Mix_W_gabi_44g_1024x.webp?alt=media&token=ab56a9c9-fa0b-49ff-9a2d-cfa5b94a0051',
       price: 14.85,
       description: 'KNORR SINIGANG SA SAMPALOK NA MAY GABI MIX 22G',
       barcode: 4808680652146,
@@ -127,7 +125,7 @@ class Product extends Equatable {
       name: 'Knorr sinigang miso mix',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://down-ph.img.susercontent.com/file/67ccaf550f6ca176d07654d514ebb2d4',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fknor%20miso.jpg?alt=media&token=b8b76878-ce8c-4767-89f8-1631cb07ac14',
       price: 15.35,
       description: 'KNORR SINIGANG SA SAMPALOK NA MAY MISO MIX 23G',
       barcode: 4800888600219,
@@ -141,7 +139,7 @@ class Product extends Equatable {
       name: 'Knorr Pork Broth Cube',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://boholgrocery.com/wp-content/uploads/2020/09/Knorr-Cubes-Pork-Broth-10g-x-6pcs-Bundle.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FKnorr-Cubes-Pork-Broth-10g-x-6pcs-Bundle.jpg?alt=media&token=aa8eb615-c082-4615-ae6c-910b6b970000',
       price: 33.85,
       description: 'KNORR PORK BROTH CUBES 60G (6 CUBES X10G)',
       barcode: 4800888601070,
@@ -155,7 +153,7 @@ class Product extends Equatable {
       name: 'Datu Puti Vinegar',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://shoppe24.ph/cdn/shop/products/21810_500x.jpg?v=1588928185',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fdatu-puti.webp?alt=media&token=d2087b98-3f20-41a2-85f3-73f3ffb29309',
       price: 18.25,
       description: 'DATU PUTI VINEGAR 385ML',
       barcode: 4801668500293,
@@ -169,7 +167,7 @@ class Product extends Equatable {
       name: 'Mama Sitas Oyster Sauce',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/m/a/mama-sita-oyster-sauce-405g_1.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fmama-sita-oyster-sauce-405g_1.jpg?alt=media&token=099f4e9c-7d4f-4bbb-a435-86e6138b65aa',
       price: 61.40,
       description: 'MAMA SIITA’S OYSTER SAUCE 156G',
       barcode: 4804888804233,
@@ -183,7 +181,7 @@ class Product extends Equatable {
       name: 'Jufran sweet chili',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://shopgaisano.com/cdn/shop/products/4801668300039_grande.jpg?v=1645497425',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fjufran.webp?alt=media&token=8fe13eed-5782-41a1-8164-af0a746f5e59',
       price: 52.30,
       description: 'JUFRAN SWEET CHILI SAUCE 330G',
       barcode: 4801668300039,
@@ -197,7 +195,7 @@ class Product extends Equatable {
       name: 'Mang Thomas Siga Hot spicy',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/m/a/mang-tomas-lechon-sauce-siga-12oz_1.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fmang-tomas-lechon-sauce-siga-12oz_1.jpg?alt=media&token=450f793b-f54c-4fbe-ab26-bcbc676f710c',
       price: 61.40,
       description: 'MANG TOMAS SIGA HOT & SPICY 325G',
       barcode: 4801668100288,
@@ -211,7 +209,7 @@ class Product extends Equatable {
       name: 'Ufc Hot&Spicy Banana ketchup',
       category: 'Condiments Sauces & Dress',
       imgUrl:
-          'https://shopmetro.ph/banilad-supermarket/wp-content/uploads/2021/03/SM2069227-10.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2FSM2069227-10.jpg?alt=media&token=5435b6cd-eaae-4cee-bf93-0c26e50a2d27',
       price: 61.40,
       description: 'UFC HOT & SPICY BANANA KETCHUP 320G',
       barcode: 014285000051,
@@ -225,7 +223,7 @@ class Product extends Equatable {
       name: 'Mega Sardines in Tomato',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://www.megamart.ph/cdn/shop/products/051320-Order-Form-TSC_700x700.jpg?v=1651653710',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2F051320-Order-Form-TSC_700x700.webp?alt=media&token=1723ba22-5722-4222-b0f9-239bf1648aa5',
       price: 24.50,
       description:
           'MEGA SARDINES IN TOMATO SAUCE WITH CHILI EASY OPEN CAN 155G',
@@ -240,7 +238,7 @@ class Product extends Equatable {
       name: 'Blue Cool Cucumber Lime',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/1/0/10281021_blue_cucumber_lime_500ml.png',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2F10281021_blue_cucumber_lime_500ml.png?alt=media&token=d1257bbd-ed2d-4b1d-9faf-11623f1b6d4c',
       price: 35.75,
       description: 'Cucumber Lime 500ML',
       barcode: 4800016074417,
@@ -254,7 +252,7 @@ class Product extends Equatable {
       name: 'Wet Water',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://shopsuki.ph/cdn/shop/products/Untitleddesign-2021-02-23T172515.003_800x.png?v=1690880185',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fwet%20water.webp?alt=media&token=6c57bda5-08b6-4006-aa6d-b25a4340e2c3',
       price: 6.50,
       description: 'Wet Drinking Water 330 ml',
       barcode: 4800049720183,
@@ -268,7 +266,7 @@ class Product extends Equatable {
       name: 'Vita Coco Coconut Water',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://sdcglobalchoice.com/wp-content/uploads/2021/07/9769-0w600h600_Vita_Coco_100_Pure_Coconut_Water_1_litre.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fvita%20coco.jpg?alt=media&token=94040d00-dec8-4efb-af9f-fcc2e81e2e98',
       price: 44.75,
       description: 'Vita Coco Coconut Water The original 330ML',
       barcode: 0898999000022,
@@ -282,7 +280,7 @@ class Product extends Equatable {
       name: 'Sunkist Apple',
       category: 'Beverages & Treats',
       imgUrl:
-          'https://media.pickaroo.com/media/thumb/variant_photos/2021/8/1/AgSmB7oaafVhjEBXQchrvd_watermark_400.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fsunkist.jpg?alt=media&token=5d40298d-e668-4dbf-bf18-fb699acd3333',
       price: 9.45,
       description: 'SUNKIST QCP APPLE 185ML',
       barcode: 4800110080475,
@@ -296,7 +294,7 @@ class Product extends Equatable {
       name: 'Koolers Grapes',
       category: 'Beverages & Treats',
       imgUrl:
-          'https://marilenminimart.com/cdn/shop/products/Screenshot_26.png?v=1621499544',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fkoolers.webp?alt=media&token=775b7da8-cb5b-4677-8753-820d020d1296',
       price: 35.40,
       description: 'KOOLERS FUN DRINK GRAPES 220ML',
       barcode: 4809014280653,
@@ -310,7 +308,7 @@ class Product extends Equatable {
       name: 'Tipco Kiwi Juice',
       category: 'Beverages & Treats',
       imgUrl:
-          'https://images.freshop.com/1564405684711651941/2f8c70f6ad9a69fbcc0589b7ce1ee58b_large.png',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fkiwi%20juice.png?alt=media&token=3e49b1c5-6bb8-462f-835e-a8b4631c673c',
       price: 140.80,
       description: 'TIPCO KIWI AND GRAPE JUICE 1LL',
       barcode: 8851013775490,
@@ -324,7 +322,7 @@ class Product extends Equatable {
       name: 'Ferrero collections T15',
       category: 'Biscuits & Sweets',
       imgUrl:
-          'https://images.freshop.com/1564405684711651941/2f8c70f6ad9a69fbcc0589b7ce1ee58b_large.png',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fferero.png?alt=media&token=bc3e62c0-b2db-4d85-a534-8206a8745b21',
       price: 482.00,
       description: 'FERRERO COLLECTION T15 CHOCOLATE SNACK 162G',
       barcode: 8000500227671,
@@ -338,7 +336,7 @@ class Product extends Equatable {
       name: 'Hersheys kisses classic',
       category: 'Biscuits & Sweets',
       imgUrl:
-          'https://images.freshop.com/1564405684702555916/29d079e17faf244399abf108615b2f06_large.png',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fkisses.png?alt=media&token=7186d5c6-4c90-408e-91f6-751d9643a7c6',
       price: 58.00,
       description: 'HERSHEYS KISSES CLASSIC MILK CHOCOLATE 36G',
       barcode: 6942836704117,
@@ -352,7 +350,7 @@ class Product extends Equatable {
       name: 'XO choco shake candy',
       category: 'Biscuits & Sweets',
       imgUrl:
-          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/cache/d166c7ea81ddc4172de536322110c911/x/o/xo-choco-shake-candy-35g_2.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fx.o%20coffee.jpg?alt=media&token=8cec2f8d-597b-46ec-8ba2-b40ddce3d251',
       price: 41.90,
       description: 'JNJ XO CHOCO SHAKE CANDY 50S',
       barcode: 4800016476099,
@@ -366,7 +364,7 @@ class Product extends Equatable {
       name: 'Assorted Marshmallows',
       category: 'Biscuits & Sweets',
       imgUrl:
-          'https://shopsuki.ph/cdn/shop/products/4800519187065_800x.jpg?v=1670547245',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fmarchmallows.webp?alt=media&token=9334f00e-6a66-4e49-a577-d521533b9078',
       price: 62.95,
       description: 'PURE BASICS ASSRT MALLOWS 250G',
       barcode: 4800029017494,
@@ -380,7 +378,7 @@ class Product extends Equatable {
       name: 'Nivea Men Acne oil Clear',
       category: 'Babycare & Beauty',
       imgUrl:
-          'https://www.snrshopping.com/upload/product/Nivea%20Men%20Facial%20Anti%20Acne%20Oil%20Clear%20Foam%20100g-9/Nivea%20Men%20Facial%20Anti%20Acne%20Oil%20Clear%20Foam%20100g-jGuivRESVh.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Facne%20clear%20nvia.jpg?alt=media&token=2e108afa-377a-4aa3-86b6-0d877f0d21b5',
       price: 268.00,
       description: 'NIVEA MEN ACNE OIL CLEAR 100G',
       barcode: 4005808845330,
@@ -394,7 +392,7 @@ class Product extends Equatable {
       name: 'Cetaphil Baby Gentle',
       category: 'Bath & Hygiene',
       imgUrl:
-          'https://babycompany.ph/cdn/shop/products/Cetaphil---_BABY_-Gentle-Wash-_-Shampoo-Pump.jpg?v=1671420972',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fcetaphil.webp?alt=media&token=7875eb4b-53b1-4b72-8216-9ecdb34e399b',
       price: 523,
       description: 'CETAPHIL GENTE WASH AND SHAMPOO 400ML',
       barcode: 9318637044009,
@@ -408,7 +406,7 @@ class Product extends Equatable {
       name: 'Sunsilk Green shampoo',
       category: 'Bath & Hygiene',
       imgUrl:
-          'https://lalascosmetics.eu/cdn/shop/products/GREEN_75d4cca2-9898-411f-bbd0-d1719794820e_1200x1200.jpg?v=1640723138',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fsunsilk.webp?alt=media&token=1bd1202a-1e29-4b6d-ae8c-02330855fc8f',
       price: 523,
       description: 'SUNSILK GREEN SHAMPOO 15 ML',
       barcode: 4800888169709,
@@ -422,7 +420,7 @@ class Product extends Equatable {
       name: 'Oishi in Water Orange',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://d2j6dbq0eux0bg.cloudfront.net/images/17197054/3579603248.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Finwater%20oishi.jpg?alt=media&token=9fb78ee7-6ede-4423-be36-594767b134e8',
       price: 21.85,
       description: 'OISHI IN WATER ORANGE',
       barcode: 4800194112796,
@@ -436,7 +434,7 @@ class Product extends Equatable {
       name: 'High Endurance 14G',
       category: 'Babycare & Beauty',
       imgUrl:
-          'https://d2t3trus7wwxyy.cloudfront.net/catalog/product/o/l/old-spice-high-endurance-anti-perspirantdeodorant-cream-fresh-14g_2.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fhigh%20endurance.jpg?alt=media&token=e11c6895-205d-4bc9-bf0e-43f95c14cf41',
       price: 104.00,
       description:
           'OLD SPICE HIGH ENDURANCE ANTI PERSPIRANT/DEODORANT CREAM FRESH 14G',
@@ -451,7 +449,7 @@ class Product extends Equatable {
       name: 'Milo Energy Drink 24G',
       category: 'Drinks & Canned Goods',
       imgUrl:
-          'https://imartgrocersph.com/wp-content/uploads/2020/09/Milo-24g-_-12_s.png',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fmilo.webp?alt=media&token=94b063f6-6673-44ed-99ed-e8632d7187ea',
       price: 10.00,
       description: 'MILO POWDER ENERGY DRINK SACHET 24G',
       barcode: 4800361413480,
@@ -465,7 +463,7 @@ class Product extends Equatable {
       name: 'Pimple Eraser Cleansing Soap 90G',
       category: 'Babycare & Beauty',
       imgUrl:
-          'https://myquickfx.com/wp-content/uploads/2021/09/PE-Bar-Soap.jpg',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fpimple%20heartrate.jpg?alt=media&token=38254953-ca4f-484c-8e9c-8436656a6652',
       price: 104.00,
       description: 'QUICK FX PIMPLE ERASER CLEASING BAR SOAP 90G',
       barcode: 4806530451086,
@@ -479,7 +477,7 @@ class Product extends Equatable {
       name: 'Cleene Gel Hand Sanitizer 60ml',
       category: 'Bath & Hygiene',
       imgUrl:
-          'https://zbga.shopsuki.ph/cdn/shop/products/4800067126967_1024x.jpg?v=1696846207',
+          'https://firebasestorage.googleapis.com/v0/b/goodiemap.appspot.com/o/products%2Fclenee%20alcohol.webp?alt=media&token=0174894d-4651-44f6-bf7a-67feecfdbf78',
       price: 523,
       description: 'CLEENE ALCOHOL GEL HAND SANITIZER 60ML',
       barcode: 4800067126967,

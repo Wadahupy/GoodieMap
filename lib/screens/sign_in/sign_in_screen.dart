@@ -203,7 +203,7 @@ class _SignInState extends State<SignIn> {
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
                   ),
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -252,9 +252,9 @@ class _SignInState extends State<SignIn> {
                                 fillColor: Colors.white,
                                 hintText: "Enter Email",
                                 prefixIcon: const Icon(Icons.email),
-                                prefixIconColor: MaterialStateColor.resolveWith(
+                                prefixIconColor: WidgetStateColor.resolveWith(
                                     (states) =>
-                                        states.contains(MaterialState.focused)
+                                        states.contains(WidgetState.focused)
                                             ? Colors.green
                                             : Colors.grey),
                                 hintStyle: const TextStyle(
@@ -323,9 +323,9 @@ class _SignInState extends State<SignIn> {
                                 prefixIcon: const Icon(
                                   Icons.lock,
                                 ),
-                                prefixIconColor: MaterialStateColor.resolveWith(
+                                prefixIconColor: WidgetStateColor.resolveWith(
                                     (states) =>
-                                        states.contains(MaterialState.focused)
+                                        states.contains(WidgetState.focused)
                                             ? Colors.green
                                             : Colors.grey),
                                 suffixIcon: IconButton(
@@ -411,9 +411,9 @@ class _SignInState extends State<SignIn> {
                                 }
                               },
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                     const Color(0xFF057A3B)),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50.0),
                                   ),
@@ -442,7 +442,7 @@ class _SignInState extends State<SignIn> {
               Container(
                 height: 100,
                 width: 1000,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
