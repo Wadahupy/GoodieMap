@@ -35,6 +35,8 @@ class AppRouter {
         return InforScreen.route();
       case SavedCartsScreen.routeName:
         return SavedCartsScreen.route();
+      case VerificationScreen.routeName:
+        return VerificationScreen.route();
 
       default:
         return _errorRoute();

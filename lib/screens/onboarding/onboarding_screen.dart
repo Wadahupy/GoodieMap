@@ -111,7 +111,7 @@ class _OnboardingState extends State<Onboarding> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/verification');
                 },
               ),
             )

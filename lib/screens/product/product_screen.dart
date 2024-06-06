@@ -1,5 +1,6 @@
-// ignore_for_file: camel_case_types, use_full_hex_values_for_flutter_colors
+// ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_types_as_parameter_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
@@ -48,33 +49,31 @@ class _productScreenState extends State<productScreen> {
         child: Column(
           children: [
             const Padding(padding: EdgeInsets.symmetric(horizontal: 300)),
-            Image.network(
-              widget.product.imgUrl,
-              height: 200,
-              width: 300,
-              // If product is not yet loaded
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              (loadingProgress.expectedTotalBytes ?? 1)
-                          : null,
+              CachedNetworkImage(
+                imageUrl: widget.product.imgUrl, 
+                placeholder: (context, url,) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageBuilder: (context,ImageProvider){
+                return Container(
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: ImageProvider,
+                      fit: BoxFit.fill,
                     ),
-                  );
-                }
-              },
+                  ),
+                );
+              }
             ),
             Container(
               padding: const EdgeInsets.all(5),
               width: 380,
               height: 389,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
@@ -161,32 +160,24 @@ class _productScreenState extends State<productScreen> {
                             Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
-                                child: Image.network(
-                                  widget.product.location,
-                                  height: 160,
-                                  width: 400,
-                                  fit: BoxFit.fill,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    } else {
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          value: loadingProgress
-                                                      .expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  (loadingProgress
-                                                          .expectedTotalBytes ??
-                                                      1)
-                                              : null,
+                                child: CachedNetworkImage(
+                                imageUrl: widget.product.location, 
+                                  placeholder: (context, url,) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
+                                imageBuilder: (context,ImageProvider){
+                                  return Container(
+                                    height: 160,
+                                    width: 400,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: ImageProvider,
+                                        fit: BoxFit.fill,
                                         ),
-                                      );
-                                    }
-                                  },
+                                      ),
+                                    );
+                                  }
                                 ),
                               ),
                             ),
@@ -311,8 +302,8 @@ class _productScreenState extends State<productScreen> {
                     },
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.transparent),
-                      shape: MaterialStateProperty.all(
+                          WidgetStateProperty.all(Colors.transparent),
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                           side: const BorderSide(

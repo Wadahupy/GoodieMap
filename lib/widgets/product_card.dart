@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_full_hex_values_for_flutter_colors
+// ignore_for_file: avoid_unnecessary_containers, use_full_hex_values_for_flutter_colors, avoid_types_as_parameter_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +8,7 @@ import 'package:goodiemap_app/models/product_model.dart';
 import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -36,7 +37,7 @@ class ProductCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / widthFactor,
         height: 225,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -56,26 +57,24 @@ class ProductCard extends StatelessWidget {
               },
               child: Center(
                 child: Container(
-                  child: Image.network(
-                    product.imgUrl,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    (loadingProgress.expectedTotalBytes ?? 1)
-                                : null,
+                  child:  CachedNetworkImage(
+                    imageUrl: product.imgUrl, 
+                      placeholder: (context, url,) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageBuilder: (context,ImageProvider){
+                      return Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: ImageProvider,
+                            fit: BoxFit.cover,
                           ),
-                        );
-                      }
-                    },
+                        ),
+                      );
+                    }
                   ),
                 ),
               ),
