@@ -3,6 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
+import 'package:goodiemap_app/widgets/privacy_and_policy.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -43,8 +46,7 @@ class _SignUpState extends State<SignUp> {
           .set({'username': _userController.text, 'email': _email});
 
       // User successfully created
-      Navigator.pop(context); // Remove this line if it's causing issues
-
+      //Redirect to onboarding screen
       Navigator.popAndPushNamed(context, '/onboarding');
     } on FirebaseAuthException catch (e) {
       // Handle sign-up errors
@@ -60,6 +62,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF46B177),
@@ -86,267 +89,298 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                 height: 543,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
-                          child: Text(
-                            'Username',
-                            style: TextStyle(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 10.0, left: 10.0),
+                            child: Text(
+                              'Username',
+                              style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black45),
-                          ),
-                        ),
-                        Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please Enter Your Username";
-                                }
-                                return null;
-                              },
-                              controller: _userController,
-                              autofocus: true,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                hintText: "Enter Username",
-                                prefixIcon: const Icon(Icons.person),
-                                prefixIconColor: MaterialStateColor.resolveWith(
-                                    (states) =>
-                                        states.contains(MaterialState.focused)
-                                            ? Colors.green
-                                            : Colors.grey),
-                                hintStyle: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Colors.black12,
-                                  ),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Color(0xFF46B177),
-                                  ),
-                                ),
+                                color: themeProvider.isDarkMode
+                                    ? Colors
+                                        .white // Set the text color for dark mode
+                                    : Colors
+                                        .black45, // Set the text color for light mode
                               ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
-                          child: Text(
-                            'Email',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45),
                           ),
-                        ),
-                        Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please Enter Your Email";
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                setState(() {
-                                  _email = value;
-                                });
-                              },
-                              controller: _emailController,
-                              autofocus: true,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                hintText: "Enter Email",
-                                prefixIcon: const Icon(Icons.email),
-                                prefixIconColor: MaterialStateColor.resolveWith(
-                                    (states) =>
-                                        states.contains(MaterialState.focused)
-                                            ? Colors.green
-                                            : Colors.grey),
-                                hintStyle: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Colors.black12,
-                                  ),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Color(0xFF46B177),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
-                          child: Text(
-                            'Password',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45),
-                          ),
-                        ),
-                        Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please Enter Your Password";
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                setState(() {
-                                  _password = value;
-                                });
-                              },
-                              controller: _passController,
-                              autofocus: true,
-                              cursorColor: Colors.green,
-                              obscureText: !_passwordVisible,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
-                                hintText: "Enter Password",
-                                prefixIcon: const Icon(
-                                  Icons.lock,
-                                ),
-                                prefixIconColor: MaterialStateColor.resolveWith(
-                                    (states) =>
-                                        states.contains(MaterialState.focused)
-                                            ? Colors.green
-                                            : Colors.grey),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    // Based on passwordVisible state choose the icon
-                                    _passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                          Column(
+                            children: <Widget>[
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please Enter Your Username";
+                                  }
+                                  return null;
+                                },
+                                controller: _userController,
+                                autofocus: true,
+                                keyboardType: TextInputType.text,
+                                cursorColor: Colors.green,
+                                decoration: InputDecoration(
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSurface,
+                                  hintText: "Enter Username",
+                                  prefixIcon: const Icon(Icons.person),
+                                  prefixIconColor:
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
+                                              ? Colors.green
+                                              : Colors.grey),
+                                  hintStyle: const TextStyle(
                                     color: Colors.grey,
                                   ),
-                                  onPressed: () {
-                                    // Update the state i.e., toggle the state of passwordVisible variable
-                                    setState(() {
-                                      _passwordVisible = !_passwordVisible;
-                                    });
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Colors.black12,
+                                    ),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Color(0xFF46B177),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 10.0, left: 10.0),
+                            child: Text(
+                              'Email',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                color: themeProvider.isDarkMode
+                                    ? Colors
+                                        .white // Set the text color for dark mode
+                                    : Colors
+                                        .black45, // Set the text color for light mode
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: <Widget>[
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please Enter Your Email";
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  setState(() {
+                                    _email = value;
+                                  });
+                                },
+                                controller: _emailController,
+                                autofocus: true,
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.green,
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  hintText: "Enter Email",
+                                  prefixIcon: const Icon(Icons.email),
+                                  prefixIconColor:
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
+                                              ? Colors.green
+                                              : Colors.grey),
+                                  hintStyle: const TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Colors.black12,
+                                    ),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Color(0xFF46B177),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 10.0, left: 10.0),
+                            child: Text(
+                              'Password',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                color: themeProvider.isDarkMode
+                                    ? Colors
+                                        .white // Set the text color for dark mode
+                                    : Colors
+                                        .black45, // Set the text color for light mode
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: <Widget>[
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please Enter Your Password";
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  setState(() {
+                                    _password = value;
+                                  });
+                                },
+                                controller: _passController,
+                                autofocus: true,
+                                cursorColor: Colors.green,
+                                obscureText: !_passwordVisible,
+                                keyboardType: TextInputType.visiblePassword,
+                                decoration: InputDecoration(
+                                  hintText: "Enter Password",
+                                  prefixIcon: const Icon(
+                                    Icons.lock,
+                                  ),
+                                  prefixIconColor:
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
+                                              ? Colors.green
+                                              : Colors.grey),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      // Based on passwordVisible state choose the icon
+                                      _passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.grey,
+                                    ),
+                                    onPressed: () {
+                                      // Update the state of the toggle
+                                      setState(() {
+                                        _passwordVisible = !_passwordVisible;
+                                      });
+                                    },
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Color(0xFF46B177),
+                                    ),
+                                  ),
+                                  hintStyle: const TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 3,
+                                      color: Colors.black12,
+                                    ),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 15),
+                          Center(
+                            child: SizedBox(
+                              width: 350,
+                              height: 60,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _handleSignUp();
+                                  }
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      const Color(0xFF057A3B)),
+                                  shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "SIGN UP",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Center(
+                            child: Text(
+                              'By Signing in with us, you agree to our',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: GestureDetector(
+                              // Show Terms & Privacy Policy
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const PrivacyAndPolicy();
                                   },
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Color(0xFF46B177),
-                                  ),
-                                ),
-                                hintStyle: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Colors.black12,
-                                  ),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Center(
-                          child: SizedBox(
-                            width: 350,
-                            height: 60, // Reduced button height
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _handleSignUp();
-                                }
+                                );
                               },
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xFF057A3B)),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                ),
-                              ),
-                              child: const Text(
-                                "SIGN UP",
-                                style: TextStyle(
-                                  fontSize: 24, // Adjusted font size
-                                  color: Colors.white,
-                                ),
-                              ),
+                              child: const Text('Terms & Privacy Policy',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 15),
-                        const Center(
-                          child: Text(
-                            'By Signing in with us, you agree to our',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: const Text('Terms & Privacy Policy',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -358,8 +392,8 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                 height: 100,
-                width: 420,
-                color: Colors.white,
+                width: 1000,
+                color: Theme.of(context).colorScheme.surface,
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

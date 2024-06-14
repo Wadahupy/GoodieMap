@@ -44,7 +44,6 @@ dependencies:
   equatable: ^2.0.5
   flutter_bloc: ^8.1.3
   bloc: ^8.1.2
-  barcode_widget: ^2.0.4
   firebase_core: ^2.24.2
   cloud_firestore: ^4.13.6
   easy_search_bar: ^2.5.0
@@ -52,6 +51,15 @@ dependencies:
   video_player: ^2.8.1
   image_picker: ^1.0.5
   firebase_storage: ^11.5.6
+  flutter_barcode_scanner: ^2.0.0
+  simple_barcode_scanner: ^0.0.9
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_svg: ^2.0.9
+  hydrated_bloc: ^9.1.3
+  path_provider: ^2.1.2
+  cached_network_image: ^3.3.1
+  liquid_pull_to_refresh: ^3.0.1
 
 
  
@@ -66,6 +74,27 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/GoodieMap_Logo(2).png"
+  adoptive_icon_background: "#ffffff"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/GoodieMap_Logo(2).png"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"
+  windows:
+    generate: true
+    image_path: "assets/GoodieMap_Logo(2).png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/GoodieMap_Logo(2).png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

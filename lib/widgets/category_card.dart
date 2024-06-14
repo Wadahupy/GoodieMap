@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/models/models.dart';
 
@@ -31,11 +34,24 @@ class CategoryCard extends StatelessWidget {
                 alignment: Alignment
                     .bottomLeft, // Aligns the text to the bottom left corner
                 children: [
-                  Image.network(
-                    category.imageUrl,
-                    fit: BoxFit.cover,
-                    height: 160,
-                    width: 500,
+                  CachedNetworkImage(
+                    imageUrl: category.imageUrl, 
+                      placeholder: (context, url,) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageBuilder: (context,ImageProvider){
+                      return Container(
+                        height: 160,
+                        width: 500,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: ImageProvider,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      );
+                    }
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(

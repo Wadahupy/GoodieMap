@@ -37,21 +37,41 @@ class CatalogScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
-        ),
-        itemCount: categoryProducts.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ProductCard(
-            product: categoryProducts[index],
-            widthFactor: 2,
-          );
-        },
+      body: Column(
+        children: [
+          // Display the text above the GridView
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              category.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF46B177),
+              ),
+            ),
+          ),
+          // Category section Gridview
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.75,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+              ),
+              itemCount: categoryProducts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ProductCard(
+                  product: categoryProducts[index],
+                  widthFactor: 2,
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

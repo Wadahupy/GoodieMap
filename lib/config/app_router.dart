@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/models/category_model.dart';
 import 'package:goodiemap_app/models/product_model.dart';
-import 'package:goodiemap_app/screens/product/product_screen.dart';
 import 'package:goodiemap_app/screens/screens.dart';
 
 class AppRouter {
@@ -32,6 +31,12 @@ class AppRouter {
         return AccountSelect.route();
       case ForgotPass.routeName:
         return ForgotPass.route();
+      case InforScreen.routeName:
+        return InforScreen.route();
+      case SavedCartsScreen.routeName:
+        return SavedCartsScreen.route();
+      case VerificationScreen.routeName:
+        return VerificationScreen.route();
 
       default:
         return _errorRoute();

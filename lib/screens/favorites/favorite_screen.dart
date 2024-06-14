@@ -27,15 +27,17 @@ class FavoriteScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF46B177),
+                      color: Color.fromARGB(255, 97, 133, 113),
                     ),
                   ),
                 ),
+                // Favorite product Gridview builder
                 Expanded(
                   child: GridView.builder(
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.75,
                       mainAxisSpacing: 5,

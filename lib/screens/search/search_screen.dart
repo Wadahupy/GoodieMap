@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/widgets/custom_search.dart';
@@ -44,14 +44,20 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       onWillPop: () async {
         // Handle the back button behavior
         Navigator.popUntil(context, ModalRoute.withName('/'));
-        return false; // Prevent default back button behavior
+        // Prevent default back button behavior
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0.0,
           toolbarHeight: 70,
-          title: const Text("GoodieMap"),
+          title: const Text(
+            "GoodieMap",
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
           actions: [
             Row(
               children: [
@@ -62,7 +68,10 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       delegate: CustomSearchDelegate(),
                     );
                   },
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
                 ),
                 PopupMenuButton(
                   onSelected: (value) {
@@ -83,7 +92,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       child: Text('Price: Low to High'),
                     ),
                   ],
-                  icon: const Icon(Icons.filter_alt_outlined),
+                  icon: const Icon(Icons.filter_alt_outlined,
+                      color: Colors.white),
                 ),
               ],
             )
@@ -106,6 +116,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
             ),
           ),
         ),
+        // Display search result
         body: GridView.builder(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

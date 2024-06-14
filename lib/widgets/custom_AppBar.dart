@@ -24,10 +24,23 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0.0,
       toolbarHeight: 70,
-      title: const Text("GoodieMap"),
+      leading: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Image.asset(
+          'assets/GoodieMap_Logo(2).png',
+          width: 40,
+          height: 40,
+          color: Colors.white,
+        ),
+      ),
+      title: const Text(
+        "GoodieMap",
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+      ),
       actions: [
         Row(
           children: [
@@ -38,7 +51,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   delegate: CustomSearchDelegate(),
                 );
               },
-              icon: const Icon(Icons.search),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
             ),
             badges.Badge(
               position: BadgePosition.topEnd(top: 0, end: 3),
@@ -48,11 +64,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
               badgeAnimation: const BadgeAnimation.scale(),
               child: IconButton(
-                icon: const Icon(Icons.shopping_cart),
+                icon: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/cart');
                 },
               ),
+            ),
+            const SizedBox(
+              width: 14,
             ),
           ],
         )

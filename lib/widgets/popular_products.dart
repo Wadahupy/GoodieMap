@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:goodiemap_app/models/product_model.dart';
+import 'package:goodiemap_app/provider/theme_provider.dart';
 import 'package:goodiemap_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class PopularProduct extends StatelessWidget {
   const PopularProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           Padding(
@@ -34,16 +37,19 @@ class PopularProduct extends StatelessWidget {
                         products: Product.products
                             .where((product) => product.isPopular)
                             .toList(),
-                        title: 'POPULAR PRODUCTS', // Pass the appropriate title
+                        title: 'POPULAR PRODUCTS',
                       ).route(),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black54,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white // Set the text color for dark mode
+                          : Colors
+                              .black54, // Set the text color for light mode,
                     ),
                   ),
                 ),
@@ -78,23 +84,26 @@ class PopularProduct extends StatelessWidget {
                         products: Product.products
                             .where((product) => product.isRecommended)
                             .toList(),
-                        title:
-                            'RECOMMENDED PRODUCTS', // Pass the appropriate title
+                        title: 'RECOMMENDED PRODUCTS',
                       ).route(),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'See all',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black54,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white // Set the text color for dark mode
+                          : Colors
+                              .black54, // Set the text color for light mode,,
                     ),
                   ),
                 ),
               ],
             ),
           ),
+          // Select product is recommended
           ProductCarousel(
             products: Product.products
                 .where((product) => product.isRecommended)

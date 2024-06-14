@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names, avoid_types_as_parameter_names
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
@@ -18,7 +21,7 @@ class CartProductCard extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
@@ -33,11 +36,27 @@ class CartProductCard extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 8.0),
         child: Row(
           children: [
-            Image.network(
-              product.imgUrl,
-              width: 100,
-              height: 80,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child:  CachedNetworkImage(
+                imageUrl: product.imgUrl, 
+                  placeholder: (context, url,) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                imageBuilder: (context,ImageProvider){
+                  return Container(
+                    height: 90,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: ImageProvider,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  );
+                }
+              ),
             ),
             const SizedBox(width: 10),
             Expanded(
