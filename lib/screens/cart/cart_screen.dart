@@ -1,8 +1,10 @@
+// cart_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goodiemap_app/bloc/cart/cart_bloc.dart';
 import 'package:goodiemap_app/widgets/cart_product_card.dart';
+import 'package:goodiemap_app/widgets/qr_code_generator.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -34,7 +36,6 @@ class CartScreen extends StatelessWidget {
                 color: Color(0xFF46B177),
               ),
             ),
-            // Add a button in your CartScreen
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/saved');
@@ -63,7 +64,6 @@ class CartScreen extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 600,
-                          // Product quantity refractor
                           child: ListView.builder(
                             itemCount: state.cart
                                 .productQuantity(state.cart.products)
@@ -89,111 +89,157 @@ class CartScreen extends StatelessWidget {
                   SafeArea(
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 7.0),
-                          child: SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextButton(
-                              onPressed: () {
-                                // Trigger an event to save the cart in the CartBloc
-                                context.read<CartBloc>().add(SaveCartEvent());
-                                Navigator.pushNamed(context, '/saved');
-                                // custom SnackBar
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Stack(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(16),
-                                          height: 90,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF46B177),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: const Row(
-                                            children: [
-                                              SizedBox(width: 48),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Successfully Save the Products',
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      'Check your history to see the records',
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextButton(
+                                  onPressed: () {
+                                    context
+                                        .read<CartBloc>()
+                                        .add(SaveCartEvent());
+                                    Navigator.pushNamed(context, '/saved');
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Stack(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(16),
+                                              height: 90,
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF46B177),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
                                               ),
-                                            ],
-                                          ),
+                                              child: const Row(
+                                                children: [
+                                                  SizedBox(width: 48),
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Successfully Save the Products',
+                                                          style: TextStyle(
+                                                            fontSize: 17,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'Check your history to see the records',
+                                                          style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Positioned(
+                                              bottom: 30,
+                                              left: 10,
+                                              child: SvgPicture.asset(
+                                                "assets/shopping-cart.svg",
+                                                height: 48,
+                                                width: 40,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Positioned(
-                                          bottom: 30,
-                                          left: 10,
-                                          child: SvgPicture.asset(
-                                            "assets/saved.svg",
-                                            height: 48,
-                                            width: 40,
-                                          ),
-                                        ),
-                                      ],
+                                        duration: const Duration(seconds: 2),
+                                        behavior: SnackBarBehavior.fixed,
+                                        elevation: 0,
+                                        backgroundColor: Colors.transparent,
+                                      ),
+                                    );
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.transparent),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        side: const BorderSide(
+                                            color: Color(0xFF46B177),
+                                            width: 3.0),
+                                      ),
                                     ),
-                                    duration: const Duration(seconds: 2),
-                                    behavior:
-                                        SnackBarBehavior.fixed, // Set to fixed
-                                    elevation: 0,
-                                    backgroundColor: Colors.transparent,
                                   ),
-                                );
-                              },
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(
-                                    Colors.transparent),
-                                shape: WidgetStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    side: const BorderSide(
-                                        color: Color(0xFF46B177), width: 3.0),
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.save,
+                                        color: Color(0xFF46B177),
+                                        size: 20,
+                                      ),
+                                      Text(
+                                        'Save Cart',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Color(0xFF46B177),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.save,
-                                    color: Color(0xFF46B177),
-                                    size: 20,
-                                  ),
-                                  Text(
-                                    'Save Cart',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Color(0xFF46B177),
+                            ),
+                            const SizedBox(width: 5),
+                            SizedBox.fromSize(
+                              size: const Size(50, 50),
+                              child: ClipOval(
+                                child: Material(
+                                  color: const Color.fromARGB(255, 65, 132, 95),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              QRCodeGenerator(
+                                            cart: state.cart,
+                                          ),
+                                        ),
+                                      );
+                                                                        },
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.qr_code_2_outlined,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          "QR",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
                                     ),
-                                    textAlign: TextAlign.center,
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
@@ -220,14 +266,13 @@ class CartScreen extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  // Display total price
                                   Text(
                                     '₱ ${state.cart.totalString}',
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 35,
                                         fontWeight: FontWeight.bold),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),

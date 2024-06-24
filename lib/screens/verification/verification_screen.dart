@@ -31,17 +31,25 @@ class VerificationScreen extends StatelessWidget {
                 height: 400,
                 width: 400,
               ),
-              const Text('VERIFY YOUR ACCOUNT',textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,)),
-              const Text('Please check your email to verify',textAlign: TextAlign.center,
+              const Text('VERIFY YOUR ACCOUNT',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const Text(
+                'Please check your email to verify',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
-                  fontWeight: FontWeight.normal,),),
-              const SizedBox(height: 40,),
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
               Column(
                 children: [
                   SizedBox(
@@ -53,8 +61,8 @@ class VerificationScreen extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                            WidgetStateProperty.all(Colors.white),
-                        shape: WidgetStateProperty.all(
+                            MaterialStateProperty.all(Colors.white),
+                        shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0),
                           ),
@@ -64,7 +72,8 @@ class VerificationScreen extends StatelessWidget {
                         "Sign In Now",
                         style: TextStyle(
                           fontSize: 30,
-                          color: Color.fromARGB(244, 53, 202, 185), // Text color
+                          color:
+                              Color.fromARGB(244, 53, 202, 185), // Text color
                         ),
                       ),
                     ),
@@ -79,8 +88,8 @@ class VerificationScreen extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                            WidgetStateProperty.all(Colors.transparent),
-                        shape: WidgetStateProperty.all(
+                            MaterialStateProperty.all(Colors.transparent),
+                        shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0),
                             side: const BorderSide(
@@ -98,7 +107,6 @@ class VerificationScreen extends StatelessWidget {
                 ],
               ),
             ],
-        
           ),
         ),
       ),

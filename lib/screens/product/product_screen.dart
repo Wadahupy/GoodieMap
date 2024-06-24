@@ -49,25 +49,28 @@ class _productScreenState extends State<productScreen> {
         child: Column(
           children: [
             const Padding(padding: EdgeInsets.symmetric(horizontal: 300)),
-              CachedNetworkImage(
-                imageUrl: widget.product.imgUrl, 
-                placeholder: (context, url,) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageBuilder: (context,ImageProvider){
-                return Container(
-                  height: 200,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: ImageProvider,
-                      fit: BoxFit.fill,
+            CachedNetworkImage(
+                imageUrl: widget.product.imgUrl,
+                placeholder: (
+                  context,
+                  url,
+                ) =>
+                    const Center(
+                      child: CircularProgressIndicator(),
                     ),
-                  ),
-                );
-              }
-            ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                imageBuilder: (context, ImageProvider) {
+                  return Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: ImageProvider,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  );
+                }),
             Container(
               padding: const EdgeInsets.all(5),
               width: 380,
@@ -161,24 +164,28 @@ class _productScreenState extends State<productScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: CachedNetworkImage(
-                                imageUrl: widget.product.location, 
-                                  placeholder: (context, url,) => const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
-                                imageBuilder: (context,ImageProvider){
-                                  return Container(
-                                    height: 160,
-                                    width: 400,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: ImageProvider,
-                                        fit: BoxFit.fill,
+                                    imageUrl: widget.product.location,
+                                    placeholder: (
+                                      context,
+                                      url,
+                                    ) =>
+                                        const Center(
+                                          child: CircularProgressIndicator(),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    imageBuilder: (context, ImageProvider) {
+                                      return Container(
+                                        height: 160,
+                                        width: 400,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: ImageProvider,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      );
+                                    }),
                               ),
                             ),
                           ],
@@ -302,8 +309,8 @@ class _productScreenState extends State<productScreen> {
                     },
                     style: ButtonStyle(
                       backgroundColor:
-                          WidgetStateProperty.all(Colors.transparent),
-                      shape: WidgetStateProperty.all(
+                          MaterialStateProperty.all(Colors.transparent),
+                      shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                           side: const BorderSide(

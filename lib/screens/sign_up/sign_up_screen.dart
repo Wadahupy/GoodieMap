@@ -135,14 +135,13 @@ class _SignUpState extends State<SignUp> {
                                 keyboardType: TextInputType.text,
                                 cursorColor: Colors.green,
                                 decoration: InputDecoration(
-                                  fillColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSurface,
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSurface,
                                   hintText: "Enter Username",
                                   prefixIcon: const Icon(Icons.person),
                                   prefixIconColor:
-                                      WidgetStateColor.resolveWith((states) =>
-                                          states.contains(WidgetState.focused)
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
                                               ? Colors.green
                                               : Colors.grey),
                                   hintStyle: const TextStyle(
@@ -209,8 +208,8 @@ class _SignUpState extends State<SignUp> {
                                   hintText: "Enter Email",
                                   prefixIcon: const Icon(Icons.email),
                                   prefixIconColor:
-                                      WidgetStateColor.resolveWith((states) =>
-                                          states.contains(WidgetState.focused)
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
                                               ? Colors.green
                                               : Colors.grey),
                                   hintStyle: const TextStyle(
@@ -279,8 +278,8 @@ class _SignUpState extends State<SignUp> {
                                     Icons.lock,
                                   ),
                                   prefixIconColor:
-                                      WidgetStateColor.resolveWith((states) =>
-                                          states.contains(WidgetState.focused)
+                                      MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
                                               ? Colors.green
                                               : Colors.grey),
                                   suffixIcon: IconButton(
@@ -334,9 +333,9 @@ class _SignUpState extends State<SignUp> {
                                   }
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: WidgetStateProperty.all(
+                                  backgroundColor: MaterialStateProperty.all(
                                       const Color(0xFF057A3B)),
-                                  shape: WidgetStateProperty.all(
+                                  shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50.0),
                                     ),
